@@ -1,0 +1,328 @@
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active{
+	    background-color: rgb(75 106 144) !important;
+}
+
+
+element.style {
+}
+[class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:focus, [class*=sidebar-dark-] .nav-treeview>.nav-item>.nav-link.active:hover {
+    background-color: rgb(195 44 107) !important;
+    color: #ffffff !important;
+}
+
+
+element.style {
+}
+.card-primary:not(.card-outline)>.card-header, .card-primary:not(.card-outline)>.card-header a {
+    color: #fff;
+}
+.card-primary:not(.card-outline)>.card-header {
+    background-color: #343a40de;
+}
+
+.custom-card-title {
+	padding-top:10px;
+}
+
+.custom-pull-right {
+	display: inline-block;
+    float: right;
+}
+
+.btn-custom-tab .btn-outline-info:not(:disabled):not(.disabled).active, .btn-outline-info:not(:disabled):not(.disabled):active, .show>.btn-outline-info.dropdown-toggle{
+	background: #494e53 !important;
+	border-color:#494e53 !important;
+}
+
+.required-label{
+	font-size: 6px;
+    padding-left: 3px;
+    position: absolute;
+    margin-top: 4px;
+    color:red;
+}
+
+.pull-right-button{
+    float:right;
+}
+
+.height-40-px {
+    height: 40px;
+}
+
+.margin-top-30-px{
+    margin-top:30px;
+}
+
+.display-inline{
+    display: inline;
+}
+
+.select2-results__option[aria-disabled=true]{
+    color: #e0dddd !important;
+    background: #adadadb8 !important;
+}
+
+.font-size-12px {
+    font-size:13px;
+    border-radius:0;
+    font-style:italic;
+}
+
+.error-title-styling{
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.error-hr{
+    margin-top: 0px;
+    margin-bottom: 5px;
+    margin-left: -18px;
+    margin-right: -60px;
+}
+
+.hr-ribbon {
+    background: #fff;
+    margin-top: 5px;
+    margin-bottom: 7px;
+}
+
+.font-size-15px{
+    font-size: 15px;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.margin-bottom-less{
+    margin-bottom: 10px;
+}
+
+.padding-0px{
+    padding:0px;
+    width:100%;
+}
+
+.number-big{
+    font-size:25px !important;
+    margin-bottom: 0px;
+    position: relative !important;
+    display: block;
+    right:0 !important;
+    top:0 !important;
+}
+
+.card-title-custom {
+    font-size: 16px;
+    font-style: italic;
+    margin: 0;
+    font-weight: 400;
+}
+
+.custom-app-button{
+    background: #6c757d45 !important;
+    border:none;
+}
+
+.text-align-center{
+    display: block;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+select option:disabled {
+    color: #e0dddd !important;
+    background: #adadadb8 !important;
+}
+
+.custom-div-link{
+        border-top: 1px solid #ccc;
+}
+
+.width-100{
+    width:100%;
+}
+
+.text-align-center {
+    text-align:center;
+}
+
+.font-size-35{
+    font-size:35px;
+}
+
+.text-underline{
+    text-decoration: underline;
+}
+
+@font-face {
+  font-family: formblockfont;
+  src: url(formblockfont.otf);
+}
+
+.form-block-text{
+    /*font-family: formblockfont;*/
+    font-size: 22px;
+    margin-top: 8px;
+    margin-bottom: 5px;
+}
+
+.text-align-right{
+    text-align: right;
+}
+
+.normal-text{
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.normal-text-nb{
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.border-block{
+    border: 1px solid #ccc;
+    padding-right: 5px;
+    padding-left:5px;
+    background: #f7f7f7;
+    color: #000;
+}
+
+.border-block-pad{
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    padding-left: 7px;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.padding-left-right-20{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5px;
+}
+
+.mp-0{
+    margin-top:-2px !important;
+    margin-bottom: 0px !important;
+}
+
+.margin-top-20{
+    margin-top: 20px;
+}
+
+.margin-top-40{
+    margin-top: 40px;
+}
+
+.img-print-size {
+    width: 175px;
+    height:195px;
+}
+
+.img-print-size2{
+    width:143px;
+    height: 165px;
+}
+
+.margin-left-right-5px{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.margin-bottom-5px{
+    margin-bottom: 5px !important;
+}
+
+.font-size-15px{
+    font-size: 15px;
+    margin:0px;
+    padding:8px;
+}
+
+.display-inline-block{
+    display: inline-block;
+}
+
+.pp-0{
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.mlmr-10px{
+    margin-left:-10px;
+    margin-right:-10px;
+}
+
+.mycallout{
+    font-weight: 300;
+    font-size:18px;
+    border-radius: 0px;
+}
+
+.mydiv{
+    border-left: 5px solid #117a8b;
+    margin: 0px;
+    padding-top: 0px;
+    margin-top: 3px;
+    height: 31px;
+}
+
+.font-color{
+    color:#000;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.width-auto{
+    width:auto;
+}
+
+.margin-righ-10px{
+    margin-right: 10px;
+}
+
+.theme_color{
+    color:#338055;
+}
+
+.weight-bold{
+    font-weight: bold;
+}
+
+.family-century{
+    font-family: century;
+}
+
+.custom_info_box{
+    margin-bottom: 0px !important;
+    min-height: auto !important;
+}
+
+.font-weight-apply{
+    display: table;
+    margin-left:auto;
+    margin-right: auto;
+    font-size: 16px !important;
+    text-align: center;
+}

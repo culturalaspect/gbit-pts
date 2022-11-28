@@ -1,0 +1,89 @@
+.power-grid-table td{
+    /* word-break: break-all;
+    white-space: normal !important; */
+}
+
+.btn{
+    color:#fff;
+}
+
+.btn:hover{
+    color:#fff;
+}
+
+/* #mySidenav .active {
+    background-color: rgb(30, 136, 229) !important;
+    border-color: rgb(30, 136, 229) !important;
+} */
+
+.topbar {
+    background-color: #26c6da;
+}
+
+.page-breadcrumb .breadcrumb .breadcrumb-item a {
+    color: #26c6da;
+}
+
+.page-breadcrumb .page-title {
+    color: #26c6da;
+}
+
+.page-item.active .page-link{
+    background-color: #26c6da;
+    border-color: #26c6da;
+    color: #fff!important;
+}
+
+.footer a {
+    color: #26c6da;
+}
+
+.footer a:hover {
+    color: #007e8e;
+}
+
+.form-check-input:checked {
+    background-color: #26c6da;
+    border-color: #26c6da;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #e9ecef !important;
+    opacity: 1;
+}
+
+.form-control:focus {
+    color: #54667a !important;
+    background-color: #fff !important;
+    border-color: rgba(0,0,0,.25) !important;
+    outline: 0 !important;
+    box-shadow: unset,0 0 0 0 transparent !important;
+}
+
+.blockUI{
+    z-index: 9999999 !important;
+}
+
+.blockOverlay{
+    z-index: 9999999 !important;
+}
+
+/* .card .card-body span {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.bootstrap-select, .dropdown-menu, .power-grid-table input, select {
+    font-size: 12px !important;
+}
+
+.power_grid, select {
+    font-size: 12px !important;
+    opacity: 1!important;
+    padding-left: 10px!important;
+}
+
+.bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover {
+    color: #999;
+    font-size: 12px !important;
+} */
