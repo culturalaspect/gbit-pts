@@ -20,6 +20,9 @@ final class Row
     /** The row style. */
     private Style $style;
 
+    /** Row height. */
+    private float $height = 0;
+
     /**
      * Row constructor.
      *
@@ -109,8 +112,24 @@ final class Row
     }
 
     /**
-     * @internal
-     *
+     * Set row height.
+     */
+    public function setHeight(float $height): self
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Returns row height.
+     */
+    public function getHeight(): float
+    {
+        return $this->height;
+    }
+
+    /**
      * @return list<null|bool|DateInterval|DateTimeInterface|float|int|string> The row values, as array
      */
     public function toArray(): array

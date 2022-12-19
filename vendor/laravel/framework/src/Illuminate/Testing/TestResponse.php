@@ -253,6 +253,31 @@ class TestResponse implements ArrayAccess
     }
 
     /**
+     * Assert whether the response is redirecting to a given route.
+     *
+     * @param  string  $name
+     * @param  mixed  $parameters
+     * @return $this
+     */
+    public function assertRedirectToRoute($name, $parameters = [])
+    {
+        $uri = route($name, $parameters);
+
+        PHPUnit::assertTrue(
+            $this->isRedirect(),
+            $this->statusMessageWithDetails('201, 301, 302, 303, 307, 308', $this->getStatusCode()),
+        );
+
+        $request = Request::create($this->headers->get('Location'));
+
+        PHPUnit::assertEquals(
+            app('url')->to($uri), $request->fullUrl()
+        );
+
+        return $this;
+    }
+
+    /**
      * Assert whether the response is redirecting to a given signed route.
      *
      * @param  string|null  $name
@@ -548,6 +573,19 @@ class TestResponse implements ArrayAccess
     }
 
     /**
+     * Assert that the given string matches the streamed response content.
+     *
+     * @param  $value
+     * @return $this
+     */
+    public function assertStreamedContent($value)
+    {
+        PHPUnit::assertSame($value, $this->streamedContent());
+
+        return $this;
+    }
+
+    /**
      * Assert that the given string or array of strings are contained within the response.
      *
      * @param  string|array  $value
@@ -596,11 +634,11 @@ class TestResponse implements ArrayAccess
 
         $values = $escape ? array_map('e', ($value)) : $value;
 
-        tap(strip_tags($this->getContent()), function ($content) use ($values) {
-            foreach ($values as $value) {
-                PHPUnit::assertStringContainsString((string) $value, $content);
-            }
-        });
+        $content = strip_tags($this->getContent());
+
+        foreach ($values as $value) {
+            PHPUnit::assertStringContainsString((string) $value, $content);
+        }
 
         return $this;
     }
@@ -654,11 +692,11 @@ class TestResponse implements ArrayAccess
 
         $values = $escape ? array_map('e', ($value)) : $value;
 
-        tap(strip_tags($this->getContent()), function ($content) use ($values) {
-            foreach ($values as $value) {
-                PHPUnit::assertStringNotContainsString((string) $value, $content);
-            }
-        });
+        $content = strip_tags($this->getContent());
+
+        foreach ($values as $value) {
+            PHPUnit::assertStringNotContainsString((string) $value, $content);
+        }
 
         return $this;
     }

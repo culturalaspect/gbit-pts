@@ -143,6 +143,18 @@ trait ValidatesAttributes
     }
 
     /**
+     * Validate that an attribute is 7 bit ASCII.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function validateAscii($attribute, $value)
+    {
+        return Str::isAscii($value);
+    }
+
+    /**
      * "Break" on first validation fail.
      *
      * Always returns true, just lets us put "bail" in rules.
@@ -1159,6 +1171,32 @@ trait ValidatesAttributes
     }
 
     /**
+     * Validate that an attribute is lowercase.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  array<int, int|string>  $parameters
+     * @return bool
+     */
+    public function validateLowercase($attribute, $value, $parameters)
+    {
+        return Str::lower($value) === $value;
+    }
+
+    /**
+     * Validate that an attribute is uppercase.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @param  array<int, int|string>  $parameters
+     * @return bool
+     */
+    public function validateUppercase($attribute, $value, $parameters)
+    {
+        return Str::upper($value) === $value;
+    }
+
+    /**
      * Validate the MIME type of a file is an image MIME type.
      *
      * @param  string  $attribute
@@ -2111,6 +2149,18 @@ trait ValidatesAttributes
         $~ixu';
 
         return preg_match($pattern, $value) > 0;
+    }
+
+    /**
+     * Validate that an attribute is a valid ULID.
+     *
+     * @param  string  $attribute
+     * @param  mixed  $value
+     * @return bool
+     */
+    public function validateUlid($attribute, $value)
+    {
+        return Str::isUlid($value);
     }
 
     /**
