@@ -3,7 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Company;
-use App\Models\CompanyFinancial;
+use App\Models\Domain;
+use App\Models\Project;
 use App\Models\Phase;
 use App\Models\Scheme;
 use Illuminate\Support\Carbon;
@@ -13,7 +14,7 @@ use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
 use DB;
 
-final class CompanyFinancialTable extends PowerGridComponent
+final class CompanyProjectTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -24,9 +25,9 @@ final class CompanyFinancialTable extends PowerGridComponent
     | Setup Table's general features
     |
     */
-    public string $primaryKey = 'company_financials.id';
+    public string $primaryKey = 'projects.id';
 
-    public string $sortField = 'company_financials.id';
+    public string $sortField = 'projects.id';
 
     public function header(): array
     {
@@ -69,31 +70,27 @@ final class CompanyFinancialTable extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return CompanyFinancial::query()
+        return Project::query()
             ->join('companies', function($companies){
-                $companies->on('company_financials.company_id', '=', 'companies.id');
+                $companies->on('projects.company_id', '=', 'companies.id');
             })
-            ->join('phases', function ($phases) {
-                $phases->on('company_financials.phase_id', '=', 'phases.id');
-            })
-            ->join('schemes', function ($schemes) {
-                $schemes->on('phases.scheme_id', '=', 'schemes.id');
+            ->join('domains', function ($domains) {
+                $domains->on('projects.domain_id', '=', 'domains.id');
             })
             ->select([
-                'company_financials.id',
+                'projects.id',
                 'companies.id AS company_id',
                 'companies.company_name AS company_name',
-                'schemes.id as scheme_id',
-                'schemes.scheme_name as scheme_name',
-                'phases.phase_name as phase_name',
-                'company_financials.total_sanctioned_amount',
-                'company_financials.total_installments',
-                'company_financials.installment_markup_percentage',
-                'company_financials.installment_amount',
-                DB::raw('IF(company_financials.is_sanctioned_by_kcbl = 1, "Yes", "No") AS is_sanctioned_by_kcbl'),
-                DB::raw('IF(company_financials.is_completed_by_kcbl = 1, "Yes", "No") AS is_completed_by_kcbl'),
-                'company_financials.created_at',
-                'company_financials.updated_at'
+                'projects.project_title',
+                'domains.id as domain_id',
+                'domains.domain_name as domain_name',
+                'projects.other_domain',
+                'projects.problem_statement',
+                'projects.summary_of_solution',
+                'projects.expected_results',
+                'projects.organizational_expertise',
+                'projects.created_at',
+                'projects.updated_at'
             ]);
     }
 
@@ -130,41 +127,40 @@ final class CompanyFinancialTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('company_financials.id', function (CompanyFinancial $model) {
+            ->addColumn('projects.id', function (Project $model) {
                 return $model->id;
             })
 
             ->addColumn('companies.company_name')
 
-            ->addColumn('company_financials.total_sanctioned_amount', function (CompanyFinancial $model) {
-                return $model->total_sanctioned_amount;
+            ->addColumn('projects.project_title', function (Project $model) {
+                return $model->project_title;
             })
 
-            ->addColumn('company_financials.total_installments', function (CompanyFinancial $model) {
-                return $model->total_installments;
+            ->addColumn('domains.domain_name')
+
+            ->addColumn('projects.other_domain', function (Project $model) {
+                return $model->other_domain;
             })
 
-            ->addColumn('company_financials.installment_markup_percentage', function (CompanyFinancial $model) {
-                return $model->installment_markup_percentage;
+            ->addColumn('projects.problem_statement', function (Project $model) {
+                return $model->problem_statement;
             })
 
-            ->addColumn('company_financials.installment_amount', function (CompanyFinancial $model) {
-                return $model->installment_amount;
+            ->addColumn('projects.summary_of_solution', function (Project $model) {
+                return $model->summary_of_solution;
             })
 
-            ->addColumn('company_financials.is_sanctioned_by_kcbl', function (CompanyFinancial $model) {
-                return $model->is_sanctioned_by_kcbl;
+            ->addColumn('projects.expected_results', function (Project $model) {
+                return $model->expected_results;
             })
 
-            ->addColumn('company_financials.is_completed_by_kcbl', function (CompanyFinancial $model) {
-                return $model->is_completed_by_kcbl;
+            ->addColumn('projects.organizational_expertise', function (Project $model) {
+                return $model->organizational_expertise;
             })
 
-            ->addColumn('scheme_id')
-            ->addColumn('scheme_name')
-            ->addColumn('phase_name')
-            ->addColumn('created_at_formatted', fn (CompanyFinancial $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (CompanyFinancial $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('created_at_formatted', fn (Project $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at_formatted', fn (Project $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -184,7 +180,7 @@ final class CompanyFinancialTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'company_financials.id')
+            Column::make('ID', 'projects.id')
                 ->sortable()
                 ->searchable()
                 ->makeInputRange(),
@@ -193,50 +189,46 @@ final class CompanyFinancialTable extends PowerGridComponent
                 ->makeInputMultiSelect(Company::all(), 'company_name', 'company_id')
                 ->sortable(),
 
-            Column::make(__('SCHEME'), 'scheme_name', 'schemes.scheme_name')
-                ->makeInputMultiSelect(Scheme::all(), 'scheme_name', 'scheme_id')
+            Column::make('PROJECT TITLE', 'projects.project_title')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make(__('DOMAIN'), 'domain_name', 'domains.domain_name')
+                ->makeInputMultiSelect(Domain::all(), 'domain_name', 'domain_id')
                 ->sortable(),
 
-            Column::make(__('PHASE'), 'phase_name', 'phases.phase_name')
-                ->makeInputMultiSelect(Phase::all(), 'phase_name', 'phase_id')
-                ->sortable(),
-
-            Column::make('LOAN AMOUNT', 'company_financials.total_sanctioned_amount')
+            Column::make('OTHER DOMAIN', 'projects.other_domain')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputText(),
 
-            Column::make('TOTAL INSTALLMENTS', 'company_financials.total_installments')
+            Column::make('PROBLEM', 'projects.problem_statement')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputText(),
 
-            Column::make('MARKUP %', 'company_financials.installment_markup_percentage')
+            Column::make('SOLUTION', 'projects.summary_of_solution')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputText(),
 
-            Column::make('INSTALLMENT AMOUNT', 'company_financials.installment_amount')
+            Column::make('RESULTS', 'projects.expected_results')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputText(),
 
-            Column::make('LOAN DISBURSED', 'company_financials.is_sanctioned_by_kcbl')
+            Column::make('EXPERTISE', 'projects.organizational_expertise')
                 ->sortable()
                 ->searchable()
-                ->makeBooleanFilter(),
+                ->makeInputText(),
 
-            Column::make('COMPLETED', 'company_financials.is_completed_by_kcbl')
-                ->sortable()
-                ->searchable()
-                ->makeBooleanFilter(),
-
-            Column::make('CREATED AT', 'created_at_formatted', 'company_financials.created_at')
+            Column::make('CREATED AT', 'created_at_formatted', 'projects.created_at')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            Column::make('UPDATED AT', 'updated_at_formatted', 'company_financials.updated_at')
+            Column::make('UPDATED AT', 'updated_at_formatted', 'projects.updated_at')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),

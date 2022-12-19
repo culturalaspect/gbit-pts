@@ -6,10 +6,13 @@ use App\Http\Controllers\UsersController;
 use App\Http\Livewire\Admin\AdminIndex;
 use App\Http\Livewire\Admin\DistrictsIndex;
 use App\Http\Livewire\Admin\CategoriesIndex;
+use App\Http\Livewire\Admin\DomainsIndex;
 use App\Http\Livewire\Admin\SchemesIndex;
 use App\Http\Livewire\Admin\PhasesIndex;
 use App\Http\Livewire\Admin\CompaniesIndex;
 use App\Http\Livewire\Admin\CompanyFinancialsIndex;
+use App\Http\Livewire\Admin\CompanyProjectsIndex;
+use App\Http\Livewire\Admin\ProjectActivitiesIndex;
 use App\Http\Livewire\Admin\CompanyInstallmentsIndex;
 use App\Http\Livewire\Admin\PerformanceMeasuresIndex;
 use App\Http\Livewire\Admin\CompanyPerformanceMeasuresIndex;
@@ -22,6 +25,8 @@ use App\Http\Livewire\Bank\BankIndex;
 use App\Http\Livewire\Company\CompanyIndex;
 use App\Http\Livewire\Company\ProfileIndex;
 use App\Http\Livewire\Company\PerformanceMeasureIndex;
+use App\Http\Livewire\Company\ProjectAndActivitiesIndex;
+use App\Http\Livewire\Company\ActivityUpdateIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +51,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'isadmin'], function () {
 
     Route::get('/districts', DistrictsIndex::class)->name('admin.districts.index');
     Route::get('/categories', CategoriesIndex::class)->name('admin.categories.index');
+    Route::get('/domains', DomainsIndex::class)->name('admin.domains.index');
     Route::get('/schemes', SchemesIndex::class)->name('admin.schemes.index');
     Route::get('/phases', PhasesIndex::class)->name('admin.phases.index');
     Route::get('/companies', CompaniesIndex::class)->name('admin.companies.index');
+    Route::get('/projects', CompanyProjectsIndex::class)->name('admin.projects.index');
+    Route::get('/activities', ProjectActivitiesIndex::class)->name('admin.activities.index');
     Route::get('/companyfinancials', CompanyFinancialsIndex::class)->name('admin.companyfinancials.index');
     Route::get('/companyinstallments', CompanyInstallmentsIndex::class)->name('admin.companyinstallments.index');
     Route::get('/performancemeasures', PerformanceMeasuresIndex::class)->name('admin.performancemeasures.index');
@@ -76,6 +84,8 @@ Route::group(['prefix' => 'company', 'middleware' => 'iscompany'], function () {
 	Route::get('/dashboard', CompanyIndex::class)->name('company.index');
 
     Route::get('/profile', ProfileIndex::class)->name('company.profile.index');
+    Route::get('/projectsandactivities', ProjectAndActivitiesIndex::class)->name('company.projectsandactivities.index');
+    Route::get('/activities/{activity_id}', ActivityUpdateIndex::class);
     Route::get('/performancemeasure/{measure_id}/{phase_id}', PerformanceMeasureIndex::class);
     Route::get('/settings', SettingsIndex::class)->name('company.settings.index');
     Route::get('/companyprogress/{company_id}/{phase_id}', CompanyProgressIndex::class);

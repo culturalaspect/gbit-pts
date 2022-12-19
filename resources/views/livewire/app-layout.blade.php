@@ -162,6 +162,12 @@
                                         class="hide-menu">Categories</span></a>
                             </li>
                             <li class="sidebar-item"> <a
+                                class="{{ $selected_sub_menu == 'admin_domains' ? 'active' : '' }} sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.domains.index') }}" aria-expanded="false">
+                                <i class="mdi me-2 mdi-domain"></i><span
+                                    class="hide-menu">Domains</span></a>
+                            </li>
+                            <li class="sidebar-item"> <a
                                     class="{{ $selected_sub_menu == 'admin_performance_measures' ? 'active' : '' }} sidebar-link waves-effect waves-dark sidebar-link"
                                     href="{{ route('admin.performancemeasures.index') }}" aria-expanded="false">
                                     <i class="mdi me-2 mdi-speedometer"></i><span class="hide-menu">Measures</span></a>
@@ -180,6 +186,16 @@
                                     class="{{ $selected_sub_menu == 'admin_companies' ? 'active' : '' }} sidebar-link waves-effect waves-dark sidebar-link"
                                     href="{{ route('admin.companies.index') }}" aria-expanded="false">
                                     <i class="mdi me-2 mdi-home-modern"></i><span class="hide-menu">Companies</span></a>
+                            </li>
+                            <li class="sidebar-item"> <a
+                                class="{{ $selected_sub_menu == 'admin_projects' ? 'active' : '' }} sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.projects.index') }}" aria-expanded="false">
+                                <i class="mdi me-2 mdi-projector-screen"></i><span class="hide-menu">Projects</span></a>
+                            </li>
+                            <li class="sidebar-item"> <a
+                                class="{{ $selected_sub_menu == 'admin_projects_activities' ? 'active' : '' }} sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('admin.activities.index') }}" aria-expanded="false">
+                                <i class="mdi me-2 mdi-reorder-horizontal"></i><span class="hide-menu">Activities</span></a>
                             </li>
                         @endif
                         @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
@@ -217,6 +233,11 @@
                                     class="{{ $selected_sub_menu == 'admin_profile' ? 'active' : '' }} sidebar-link waves-effect waves-dark sidebar-link"
                                     href="{{ route('company.profile.index') }}" aria-expanded="false">
                                     <i class="mdi me-2 mdi-account-outline"></i><span class="hide-menu">Profile</span></a>
+                            </li>
+                            <li class="sidebar-item"> <a
+                                class="{{ $selected_sub_menu == 'admin_project_activities' ? 'active' : '' }} sidebar-link waves-effect waves-dark sidebar-link"
+                                href="{{ route('company.projectsandactivities.index') }}" aria-expanded="false">
+                                <i class="mdi me-2 mdi-reorder-horizontal"></i><span class="hide-menu">Project And Activities</span></a>
                             </li>
                         @endif
                     </ul>

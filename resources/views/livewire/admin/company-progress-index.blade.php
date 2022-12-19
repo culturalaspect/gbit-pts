@@ -195,7 +195,7 @@
                                         <td>{{ $company_financials->phase_name }}</td>
                                         <td>Sanctioned By KCBL</td>
                                         <td>{{ $company_financials->is_sanctioned_by_kcbl == 0 ? 'No' : 'Yes' }}</td>
-                                        <td>All Formaalities Completed</td>
+                                        <td>All Formalities Completed</td>
                                         <td>{{ $company_financials->is_completed_by_kcbl == 0 ? 'No' : 'Yes' }}</td>
                                     </tr>
                                 </tbody>

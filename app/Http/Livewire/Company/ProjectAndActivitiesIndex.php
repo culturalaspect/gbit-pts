@@ -5,21 +5,24 @@ namespace App\Http\Livewire\Company;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\District;
+use App\Models\Project;
 use App\Models\User;
 use Livewire\Component;
 
 use Hash;
 
-class ProfileIndex extends Component
+class ProjectAndActivitiesIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Profile";
-    protected $main_title = "Profile";
-    protected $breadcrumb_title = "Profile";
-    protected $selected_main_menu = "admin_profile";
+    protected $page_title = "Performance Tracking System | G-Link | Projects and Activities";
+    protected $main_title = "Projects and Activities";
+    protected $breadcrumb_title = "Projects and Activities";
+    protected $selected_main_menu = "admin_project_activities";
     protected $card_title;
     protected $selected_sub_menu;
 
-    public $company;
+    //public $company;
+    public $projects;
+    /* public $activities;
     public $ceo_name;
     public $address;
     public $cell_no;
@@ -32,11 +35,12 @@ class ProfileIndex extends Component
     public $total_profit;
     public $is_completed;
     public $startup_stage;
-    public $current_assets;
+    public $current_assets; */
 
     public function mount() {
-        $this->company = Company::where('id', auth()->user()->company_id)->first();
-        $this->ceo_name = $this->company->ceo_name;
+        //$this->company = Company::where('id', auth()->user()->company_id)->first();
+        $this->projects = Project::where('company_id', auth()->user()->company_id)->get();
+        /* $this->ceo_name = $this->company->ceo_name;
         $this->address = $this->company->address;
         $this->cell_no = $this->company->cell_no;
         $this->official_email = $this->company->official_email;
@@ -48,12 +52,12 @@ class ProfileIndex extends Component
         $this->total_profit = $this->company->total_profit;
         $this->is_completed = $this->company->is_completed;
         $this->startup_stage = $this->company->startup_stage;
-        $this->current_assets = $this->company->current_assets;
+        $this->current_assets = $this->company->current_assets; */
     }
 
     public function save()
     {
-        $company = $this->company;
+        /* $company = $this->company;
         $validateData = [
             'ceo_name' => 'required|min:3',
             'address' => 'required|min:3',
@@ -88,30 +92,26 @@ class ProfileIndex extends Component
 
         $this->dispatchBrowserEvent('showSuccessToast');
         $this->cleanVars();
-        return redirect()->to('company/dashboard')->with('message','Successfully Updated Profile.');
+        return redirect()->to('company/dashboard')->with('message','Successfully Updated Profile.'); */
     }
 
     private function cleanVars()
     {
-        $this->password = null;
+        /* $this->password = null;
         $this->old_password = null;
-        $this->confirm_password = null;
+        $this->confirm_password = null; */
     }
 
     public function render()
     {
-        $this->selected_sub_menu = "admin_profile";
-        $this->card_title = "Profile";
+        $this->selected_sub_menu = "admin_project_activities";
+        $this->card_title = "Projects and Activities";
 
-        $categories =Category::all();
-        $districts =District::all();
-
-        return view('livewire.company.profile-index')
+        return view('livewire.company.projects-activities-index')
                 ->with('main_title', $this->main_title)
                 ->with('breadcrumb_title', $this->breadcrumb_title)
                 ->with('card_title', $this->card_title)
-                ->with('categories', $categories)
-                ->with('districts', $districts)
+                ->with('projects', $this->projects)
                 ->layout('livewire.app-layout',
                 [
                     'selected_main_menu' => $this->selected_main_menu,

@@ -25,9 +25,11 @@ return new class extends Migration
             $table->unsignedBigInteger('district_id')->nullable();
             $table->foreign('district_id')->references('id')->on('districts');
             $table->text('online_profile_link')->nullable();
+            $table->string('startup_stage')->nullable();
             $table->integer('total_employees')->nullable();
             $table->decimal('total_revenue', 20, 2)->nullable();
             $table->decimal('total_profit', 20, 2)->nullable();
+            $table->text('current_assets')->nullable();
             $table->boolean('is_completed')->default(0);
             $table->timestamps();
         });

@@ -3,15 +3,19 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Company;
+use App\Models\Domain;
 use App\Models\Phase;
-use App\Models\CompanyFinancial;
+use App\Models\Project;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
-class CompanyFinancialsIndex extends Component
+use Str;
+
+class CompanyProjectsIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Company Financials";
-    protected $main_title = "Company Financials";
-    protected $breadcrumb_title = "Company Financials";
+    protected $page_title = "Performance Tracking System | G-Link | Company Projects";
+    protected $main_title = "Company Projects";
+    protected $breadcrumb_title = "Company Projects";
     protected $selected_main_menu;
     protected $card_title;
     protected $selected_sub_menu;
@@ -21,13 +25,15 @@ class CompanyFinancialsIndex extends Component
 
     public $modelId;
     public $company_id;
-    public $phase_id;
-    public $total_sanctioned_amount;
-    public $total_installments;
-    public $installment_markup_percentage;
-    public $installment_amount;
-    public $is_sanctioned_by_kcbl;
-    public $is_completed_by_kcbl;
+    public $project_title;
+    public $domain_id;
+    public $other_domain;
+    public $problem_statement;
+    public $summary_of_solution;
+    public $expected_results;
+    public $organizational_expertise;
+
+    public $is_disabled_other = true;
 
     public $deleteErrorMessage = 'Deleted Record Successfully';
 
@@ -38,20 +44,17 @@ class CompanyFinancialsIndex extends Component
         'openModal',
         'closeModal',
         'calculateLoanAmount',
+        'changeOtherDomain',
         'refreshParent' => '$refresh',
         'selectItem' => 'selectItem'
     ];
 
-    public function calculateLoanAmount() {
-        $this->dispatchBrowserEvent('blockUI');
-        $total_sanctioned_amount = $this->is_null_or_empty($this->total_sanctioned_amount);
-        $total_installments = $this->is_null_or_empty($this->total_installments);
-        $installment_markup_percentage = $this->is_null_or_empty($this->installment_markup_percentage);
-        if($total_sanctioned_amount != 0 && $total_installments != 0 && $installment_markup_percentage != 0){
-            $this->installment_amount = ((($total_sanctioned_amount/100)* $installment_markup_percentage) + $total_sanctioned_amount)/$total_installments;
-
+    public function changeOtherDomain() {
+        if(is_null($this->domain_id) || $this->domain_id=="" || $this->domain_id!=9) {
+            $this->is_disabled_other = true;
+        } else {
+            $this->is_disabled_other = false;
         }
-        $this->dispatchBrowserEvent('unblockUI');
     }
 
     public function is_null_or_empty($field) {
@@ -94,7 +97,7 @@ class CompanyFinancialsIndex extends Component
 
     public function delete()
     {
-        CompanyFinancial::destroy($this->selectedItem);
+        Project::destroy($this->selectedItem);
         $this->dispatchBrowserEvent('hideDeleteModal');
         $this->emit('pg:eventRefresh-default');
         $this->dispatchBrowserEvent('showErrorToast');
@@ -104,17 +107,17 @@ class CompanyFinancialsIndex extends Component
     {
         $this->modelId = $modelId;
 
-        $model = CompanyFinancial::find($this->modelId);
+        $model = Project::find($this->modelId);
 
         $this->id = $model->id;
         $this->company_id = $model->company_id;
-        $this->phase_id = $model->phase_id;
-        $this->total_sanctioned_amount = $model->total_sanctioned_amount;
-        $this->total_installments = $model->total_installments;
-        $this->installment_markup_percentage = $model->installment_markup_percentage;
-        $this->installment_amount = $model->installment_amount;
-        $this->is_sanctioned_by_kcbl = $model->is_sanctioned_by_kcbl;
-        $this->is_completed_by_kcbl = $model->is_completed_by_kcbl;
+        $this->domain_id = $model->domain_id;
+        $this->project_title = $model->project_title;
+        $this->other_domain = $model->other_domain;
+        $this->problem_statement = $model->problem_statement;
+        $this->summary_of_solution = $model->summary_of_solution;
+        $this->expected_results = $model->expected_results;
+        $this->organizational_expertise = $model->organizational_expertise;
     }
 
     public function save()
@@ -122,35 +125,48 @@ class CompanyFinancialsIndex extends Component
         // Data validation
         $validateData = [
             'company_id' => 'required|integer',
-            'phase_id' => 'required|integer',
-            'total_sanctioned_amount' => 'required|numeric|gte:1',
-            'total_installments' => 'required|integer|gte:1',
-            'installment_markup_percentage' => 'required|numeric|gte:1',
-            'installment_amount' => 'required|numeric|gte:1',
-            'is_sanctioned_by_kcbl' => 'required|integer',
-            'is_completed_by_kcbl' => 'required|integer'
+            'domain_id' => 'required|integer',
+            'project_title' => 'required|min:3',
+            //'other_domain' => 'required|integer|gte:1',
+            'other_domain' => [
+                function ($attribute, $value, $fail) {
+                    if ($this->domain_id == 9) {
+                        if(is_null($value) || $value == "") {
+                            $fail('This field is required.');
+                        }
+
+                        if(Str::length($value)<3) {
+                            $fail('The :attribute must be at least 3 characters.');
+                        }
+                    }
+                }
+            ],
+            'problem_statement' => 'required|min:3',
+            'summary_of_solution' => 'required|min:3',
+            'expected_results' => 'required|min:3',
+            'organizational_expertise' => 'required|min:3'
         ];
 
         // Default data
         $data = [
             'company_id' => $this->company_id,
-            'phase_id' => $this->phase_id,
-            'total_sanctioned_amount' => $this->total_sanctioned_amount,
-            'total_installments' => $this->total_installments,
-            'installment_markup_percentage' => $this->installment_markup_percentage,
-            'installment_amount' => $this->installment_amount,
-            'is_sanctioned_by_kcbl' => $this->is_sanctioned_by_kcbl,
-            'is_completed_by_kcbl' => $this->is_completed_by_kcbl
+            'domain_id' => $this->domain_id,
+            'project_title' => $this->project_title,
+            'other_domain' => $this->other_domain,
+            'problem_statement' => $this->problem_statement,
+            'summary_of_solution' => $this->summary_of_solution,
+            'expected_results' => $this->expected_results,
+            'organizational_expertise' => $this->organizational_expertise
         ];
 
         $this->validate($validateData);
 
         try {
             if ($this->modelId) {
-                CompanyFinancial::find($this->modelId)->update($data);
+                Project::find($this->modelId)->update($data);
                 $postInstanceId = $this->modelId;
             } else {
-                $postInstance = CompanyFinancial::create($data);
+                $postInstance = Project::create($data);
                 //$postInstanceId = $postInstance->id;
             }
 
@@ -193,29 +209,28 @@ class CompanyFinancialsIndex extends Component
     {
         $this->modelId = null;
         $this->company_id = null;
-        $this->phase_id = null;
-        $this->total_sanctioned_amount = null;
-        $this->total_installments = null;
-        $this->installment_markup_percentage = null;
-        $this->installment_amount = null;
-        $this->is_sanctioned_by_kcbl = null;
-        $this->is_completed_by_kcbl = null;
+        $this->domain_id = null;
+        $this->other_domain = null;
+        $this->problem_statement = null;
+        $this->summary_of_solution = null;
+        $this->expected_results = null;
+        $this->organizational_expertise = null;
     }
 
     public function render()
     {
-        $this->selected_sub_menu = "admin_company_financials";
-        $this->card_title = "Company Financials";
+        $this->selected_sub_menu = "admin_company_projects";
+        $this->card_title = "Company Projects";
 
         $companies = Company::all();
-        $phases = Phase::all();
+        $domains = Domain::all();
 
-        return view('livewire.admin.company-financials-index')
+        return view('livewire.admin.company-projects-index')
                 ->with('main_title', $this->main_title)
                 ->with('breadcrumb_title', $this->breadcrumb_title)
                 ->with('card_title', $this->card_title)
                 ->with('companies', $companies)
-                ->with('phases', $phases)
+                ->with('domains', $domains)
                 ->layout('livewire.app-layout',
                 [
                     'selected_main_menu' => $this->selected_main_menu,

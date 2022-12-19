@@ -87,6 +87,8 @@ final class CompanyTable extends PowerGridComponent
                 'companies.cell_no',
                 'companies.official_email',
                 'companies.online_profile_link',
+                'companies.startup_stage',
+                'companies.current_assets',
                 'companies.total_employees',
                 'companies.total_revenue',
                 'companies.total_profit',
@@ -169,6 +171,14 @@ final class CompanyTable extends PowerGridComponent
                 return $model->online_profile_link;
             })
 
+            ->addColumn('companies.startup_stage', function (Company $model) {
+                return $model->startup_stage;
+            })
+
+            ->addColumn('companies.current_assets', function (Company $model) {
+                return $model->current_assets;
+            })
+
             ->addColumn('companies.total_employees', function (Company $model) {
                 return $model->total_employees;
             })
@@ -240,6 +250,16 @@ final class CompanyTable extends PowerGridComponent
                 ->makeInputText(),
 
             Column::make('PROFILE LINK', 'companies.online_profile_link')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('STARTUP STAGE', 'companies.startup_stage')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('ASSETS', 'companies.current_assets')
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),

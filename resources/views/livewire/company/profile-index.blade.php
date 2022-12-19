@@ -123,6 +123,36 @@
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
                                         <select {{ $is_completed == 1 ? 'disabled' : '' }}
+                                            class="form-control {{ $errors->has('startup_stage') ? 'border-danger' : '' }}"
+                                            wire:model='startup_stage'
+                                            id="tb-old-pwd">
+                                            <option value="">Select Business / Startup Stage</option>
+                                            <option value="Ideation Level">Ideation Level</option>
+                                            <option value="Early Age Level">Early Age Level</option>
+                                            <option value="Established Level">Established Level</option>
+                                            <option value="Expansion Level">Expansion Level</option>
+                                            <option value="N/A">N/A</option>
+                                        </select>
+                                        <label for="tb-old-pwd">Select Business / Startup Stage</label>
+                                    </div>
+                                    @if ($errors->has('startup_stage'))
+                                        <p style="color: red;">{{ $errors->first('startup_stage') }}</p>
+                                    @endif
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-floating">
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='current_assets' type="text"
+                                            class="form-control {{ $errors->has('current_assets') ? 'border-danger' : '' }}"
+                                            id="tb-old-pwd" placeholder="Current Assets">
+                                        <label for="tb-old-pwd">Current Assets</label>
+                                    </div>
+                                    @if ($errors->has('current_assets'))
+                                        <p style="color: red;">{{ $errors->first('current_assets') }}</p>
+                                    @endif
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-floating">
+                                        <select {{ $is_completed == 1 ? 'disabled' : '' }}
                                             class="form-control {{ $errors->has('category_id') ? 'border-danger' : '' }}"
                                             wire:model='category_id'
                                             id="tb-old-pwd">

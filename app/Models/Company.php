@@ -21,7 +21,9 @@ class Company extends Model
         'total_profit',
         'category_id',
         'district_id',
-        'is_completed'
+        'is_completed',
+        'current_assets',
+        'startup_stage'
     );
 
     public function category() {
@@ -38,5 +40,9 @@ class Company extends Model
 
     public function companyfinancials() {
         return $this->hasMany(CompanyFinancial::class, 'company_id');
+    }
+
+    public function projects() {
+        return $this->hasMany(Project::class, 'company_id');
     }
 }

@@ -2,18 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use DB;
 use App\Models\Company;
-use App\Models\CompanyFinancial;
-use App\Models\Phase;
-use App\Models\Scheme;
+use App\Models\Project;
+use App\Models\Activity;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
+use PowerComponents\LivewirePowerGrid\Rules\{Rule, RuleActions};
 use PowerComponents\LivewirePowerGrid\{Button, Column, Exportable, Footer, Header, PowerGrid, PowerGridComponent, PowerGridEloquent};
-use DB;
 
-final class CompanyFinancialTable extends PowerGridComponent
+final class ProjectActivityTable extends PowerGridComponent
 {
     use ActionButton;
 
@@ -24,9 +23,9 @@ final class CompanyFinancialTable extends PowerGridComponent
     | Setup Table's general features
     |
     */
-    public string $primaryKey = 'company_financials.id';
+    public string $primaryKey = 'activities.id';
 
-    public string $sortField = 'company_financials.id';
+    public string $sortField = 'activities.id';
 
     public function header(): array
     {
@@ -69,31 +68,29 @@ final class CompanyFinancialTable extends PowerGridComponent
      */
     public function datasource(): Builder
     {
-        return CompanyFinancial::query()
+        return Activity::query()
+            ->join('projects', function ($projects) {
+                $projects->on('activities.project_id', '=', 'projects.id');
+            })
             ->join('companies', function($companies){
-                $companies->on('company_financials.company_id', '=', 'companies.id');
-            })
-            ->join('phases', function ($phases) {
-                $phases->on('company_financials.phase_id', '=', 'phases.id');
-            })
-            ->join('schemes', function ($schemes) {
-                $schemes->on('phases.scheme_id', '=', 'schemes.id');
+                $companies->on('projects.company_id', '=', 'companies.id');
             })
             ->select([
-                'company_financials.id',
+                'activities.id',
                 'companies.id AS company_id',
                 'companies.company_name AS company_name',
-                'schemes.id as scheme_id',
-                'schemes.scheme_name as scheme_name',
-                'phases.phase_name as phase_name',
-                'company_financials.total_sanctioned_amount',
-                'company_financials.total_installments',
-                'company_financials.installment_markup_percentage',
-                'company_financials.installment_amount',
-                DB::raw('IF(company_financials.is_sanctioned_by_kcbl = 1, "Yes", "No") AS is_sanctioned_by_kcbl'),
-                DB::raw('IF(company_financials.is_completed_by_kcbl = 1, "Yes", "No") AS is_completed_by_kcbl'),
-                'company_financials.created_at',
-                'company_financials.updated_at'
+                'activities.activity_title',
+                'projects.id as project_id',
+                'projects.project_title as project_title',
+                'activities.methodology',
+                'activities.start_date',
+                'activities.end_date',
+                'activities.status',
+                'activities.deliverable',
+                'activities.result',
+                DB::raw('IF(activities.is_deadline_set = 1, "Yes", "No") AS is_deadline_set'),
+                'activities.created_at',
+                'activities.updated_at'
             ]);
     }
 
@@ -130,41 +127,51 @@ final class CompanyFinancialTable extends PowerGridComponent
     public function addColumns(): PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('company_financials.id', function (CompanyFinancial $model) {
+            ->addColumn('activities.id', function (Activity $model) {
                 return $model->id;
             })
 
             ->addColumn('companies.company_name')
 
-            ->addColumn('company_financials.total_sanctioned_amount', function (CompanyFinancial $model) {
-                return $model->total_sanctioned_amount;
+            ->addColumn('activities.project_title', function (Activity $model) {
+                return $model->project_title;
             })
 
-            ->addColumn('company_financials.total_installments', function (CompanyFinancial $model) {
-                return $model->total_installments;
+            ->addColumn('projects.project_title')
+
+            ->addColumn('activities.activity_title', function (Activity $model) {
+                return $model->activity_title;
             })
 
-            ->addColumn('company_financials.installment_markup_percentage', function (CompanyFinancial $model) {
-                return $model->installment_markup_percentage;
+            ->addColumn('activities.methodology', function (Activity $model) {
+                return $model->methodology;
             })
 
-            ->addColumn('company_financials.installment_amount', function (CompanyFinancial $model) {
-                return $model->installment_amount;
+            ->addColumn('start_date_formatted', fn (Activity $model) => Carbon::parse($model->start_date)->format('d/m/Y'))
+            ->addColumn('end_date_formatted', fn (Activity $model) => Carbon::parse($model->end_date)->format('d/m/Y'))
+
+            ->addColumn('activities.status', function (Activity $model) {
+                return $model->status;
             })
 
-            ->addColumn('company_financials.is_sanctioned_by_kcbl', function (CompanyFinancial $model) {
-                return $model->is_sanctioned_by_kcbl;
+            ->addColumn('activities.status', function (Activity $model) {
+                return $model->status == 0 ? '<span class="badge bg-primary">In Progress</span>' : ($model->status == 1 ? '<span class="badge bg-success">Completed</span>' : '<span class="badge bg-danger">N/A</span>');
             })
 
-            ->addColumn('company_financials.is_completed_by_kcbl', function (CompanyFinancial $model) {
-                return $model->is_completed_by_kcbl;
+            ->addColumn('activities.deliverable', function (Activity $model) {
+                return '<a download class="btn btn-warning btn-outline" href="'. url('storage/deliverables/'.$model->deliverable) .'">Download Deliverable</a>';
             })
 
-            ->addColumn('scheme_id')
-            ->addColumn('scheme_name')
-            ->addColumn('phase_name')
-            ->addColumn('created_at_formatted', fn (CompanyFinancial $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
-            ->addColumn('updated_at_formatted', fn (CompanyFinancial $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
+            ->addColumn('activities.result', function (Activity $model) {
+                return $model->result;
+            })
+
+            ->addColumn('activities.is_deadline_set', function (Activity $model) {
+                return $model->is_deadline_set;
+            })
+
+            ->addColumn('created_at_formatted', fn (Activity $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'))
+            ->addColumn('updated_at_formatted', fn (Activity $model) => Carbon::parse($model->updated_at)->format('d/m/Y H:i:s'));
     }
 
     /*
@@ -184,7 +191,7 @@ final class CompanyFinancialTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('ID', 'company_financials.id')
+            Column::make('ID', 'activities.id')
                 ->sortable()
                 ->searchable()
                 ->makeInputRange(),
@@ -193,50 +200,61 @@ final class CompanyFinancialTable extends PowerGridComponent
                 ->makeInputMultiSelect(Company::all(), 'company_name', 'company_id')
                 ->sortable(),
 
-            Column::make(__('SCHEME'), 'scheme_name', 'schemes.scheme_name')
-                ->makeInputMultiSelect(Scheme::all(), 'scheme_name', 'scheme_id')
+            Column::make(__('PROJECT'), 'project_title', 'projects.project_title')
+                ->makeInputMultiSelect(Project::all(), 'project_title', 'project_id')
                 ->sortable(),
 
-            Column::make(__('PHASE'), 'phase_name', 'phases.phase_name')
-                ->makeInputMultiSelect(Phase::all(), 'phase_name', 'phase_id')
-                ->sortable(),
-
-            Column::make('LOAN AMOUNT', 'company_financials.total_sanctioned_amount')
+            Column::make('ACTIVITY TITLE', 'activities.activity_title')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputText(),
 
-            Column::make('TOTAL INSTALLMENTS', 'company_financials.total_installments')
+            Column::make('METHODOLOGY', 'activities.methodology')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputText(),
 
-            Column::make('MARKUP %', 'company_financials.installment_markup_percentage')
+            Column::make('START DATE', 'start_date_formatted', 'start_date')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputDatePicker(),
 
-            Column::make('INSTALLMENT AMOUNT', 'company_financials.installment_amount')
+            Column::make('END DATE', 'end_date_formatted', 'end_date')
                 ->sortable()
                 ->searchable()
-                ->makeInputRange(),
+                ->makeInputDatePicker(),
 
-            Column::make('LOAN DISBURSED', 'company_financials.is_sanctioned_by_kcbl')
+            Column::make('STATUS', 'activities.status')
+                ->sortable()
+                ->searchable()
+                ->makeInputSelect(Activity::statuses(), 'label', 'status'),
+
+            /* Column::make('SOLUTION', 'activities.summary_of_solution')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(), */
+
+            Column::make('DELIVERABLE', 'activities.deliverable')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('RESULT', 'activities.result')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+
+            Column::make('IS DEADLINE SET', 'activities.is_deadline_set')
                 ->sortable()
                 ->searchable()
                 ->makeBooleanFilter(),
 
-            Column::make('COMPLETED', 'company_financials.is_completed_by_kcbl')
-                ->sortable()
-                ->searchable()
-                ->makeBooleanFilter(),
-
-            Column::make('CREATED AT', 'created_at_formatted', 'company_financials.created_at')
+            Column::make('CREATED AT', 'created_at_formatted', 'activities.created_at')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            Column::make('UPDATED AT', 'updated_at_formatted', 'company_financials.updated_at')
+            Column::make('UPDATED AT', 'updated_at_formatted', 'activities.updated_at')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),

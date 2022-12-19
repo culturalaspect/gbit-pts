@@ -67,7 +67,7 @@
                     </div>
 
                     <div class="card-body">
-                        <livewire:company-table />
+                        <livewire:company-project-table />
                     </div>
                 </div>
             </div>
@@ -91,212 +91,123 @@
                 <div class="modal-body">
 
                     <div class="row pt-3">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
-                                <label class="control-label">Company Name</label>
-                                <input type="text" wire:model='company_name'
-                                    class="form-control"
-                                    placeholder="Company Name">
-                                @if ($errors->has('company_name'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('company_name') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <!--/span-->
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="control-label">CEO Name</label>
-                                <input type="text" wire:model='ceo_name'
-                                    class="form-control"
-                                    placeholder="CEO Name">
-                                @if ($errors->has('ceo_name'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('ceo_name') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <!--/span-->
-                    </div>
-                    <!--/row-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="control-label">Cell Number</label>
-                                <input type="text" wire:model='cell_no'
-                                    class="form-control"
-                                    placeholder="Cell No">
-                                @if ($errors->has('cell_no'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('cell_no') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <!--/span-->
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="control-label">Official Email</label>
-                                <input type="text" wire:model='official_email'
-                                    class="form-control"
-                                    placeholder="Official Email">
-                                @if ($errors->has('official_email'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('official_email') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <!--/span-->
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="control-label">Address</label>
-                                <input type="text" wire:model='address'
-                                    class="form-control"
-                                    placeholder="Address">
-                                @if ($errors->has('address'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('address') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="control-label">Online Profile Link</label>
-                                <input type="text" wire:model='online_profile_link'
-                                    class="form-control"
-                                    placeholder="Online Profile Link">
-                                @if ($errors->has('online_profile_link'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('online_profile_link') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="control-label">Current Assets</label>
-                                <textarea type="text" wire:model='current_assets'
-                                    class="form-control"
-                                    placeholder="Current Assets">Current Assets</textarea>
-                                @if ($errors->has('current_assets'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('current_assets') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="control-label">Business / Startup Stage</label>
-                                <select wire:model='startup_stage' class="form-control custom-select">
-                                    <option>Select Business / Startup Stage</option>
-                                    <option value="Ideation Level">Ideation Level</option>
-                                    <option value="Early Age Level">Early Age Level</option>
-                                    <option value="Established Level">Established Level</option>
-                                    <option value="Expansion Level">Expansion Level</option>
-                                    <option value="N/A">N/A</option>
-                                </select>
-                                @if ($errors->has('startup_stage'))
-                                    <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('startup_stage') }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                    <!--/row-->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="control-label">Categories</label>
-                                <select wire:model='category_id' class="form-control custom-select">
-                                    <option selected>Select Category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                <label class="control-label">Companies</label>
+                                <select wire:model="company_id"
+                                    class="form-control custom-select select2">
+                                    <option>Select Company</option>
+                                    @foreach ($companies as $company)
+                                        <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('category_id'))
+                                @if ($errors->has('company_id'))
                                     <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('category_id') }}
+                                        {{ $errors->first('company_id') }}
                                     </p>
                                 @endif
                             </div>
                         </div>
-                        <!--/span-->
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
-                                <label class="control-label">Districts</label>
-                                <select wire:model='district_id' class="form-control custom-select">
-                                    <option selected>Select District</option>
-                                    @foreach ($districts as $district)
-                                        <option value="{{ $district->id }}">{{ $district->district_name }}</option>
+                                <label class="control-label">Domains</label>
+                                <select wire:model="domain_id"
+                                    onchange="Livewire.emit('changeOtherDomain')"
+                                    class="form-control custom-select select2">
+                                    <option>Select Domain</option>
+                                    @foreach ($domains as $domain)
+                                        <option value="{{ $domain->id }}">{{ $domain->domain_name }}</option>
                                     @endforeach
                                 </select>
-                                @if ($errors->has('district_id'))
+                                @if ($errors->has('domain_id'))
                                     <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('district_id') }}
+                                        {{ $errors->first('domain_id') }}
                                     </p>
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="mb-3">
-                                <label class="control-label">Total Employees</label>
-                                <input type="text" wire:model='total_employees'
+                                <label class="control-label">Domain (if other)</label>
+                                <input {{ $is_disabled_other ? 'disabled' : '' }} type="text" wire:model='other_domain'
                                     class="form-control"
-                                    placeholder="Total Employees">
-                                @if ($errors->has('total_employees'))
+                                    placeholder="Domain (if other)">
+                                @if ($errors->has('other_domain'))
                                     <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('total_employees') }}
+                                        {{ $errors->first('other_domain') }}
                                     </p>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                    </div>
+                    <!--/row-->
+                    <div class="row">
+                        <div class="col-md-12">
                             <div class="mb-3">
-                                <label class="control-label">Total Revenue</label>
-                                <input type="number" wire:model='total_revenue'
+                                <label class="control-label">Project Title</label>
+                                <input type="text" wire:model='project_title'
                                     class="form-control"
-                                    placeholder="Total Revenue">
-                                @if ($errors->has('total_revenue'))
+                                    placeholder="Project Title">
+                                @if ($errors->has('project_title'))
                                     <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('total_revenue') }}
+                                        {{ $errors->first('project_title') }}
                                     </p>
                                 @endif
                             </div>
                         </div>
-
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="mb-3">
-                                <label class="control-label">Total Profit</label>
-                                <input type="number" wire:model='total_profit'
-                                    class="form-control"
-                                    placeholder="Total Profit">
-                                @if ($errors->has('total_profit'))
+                                <label class="control-label">Problem Statement</label>
+                                <textarea class="form-control" placeholder="Problem Statement"
+                                    wire:model='problem_statement'
+                                    rows="3"></textarea>
+                                @if ($errors->has('problem_statement'))
                                     <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('total_profit') }}
+                                        {{ $errors->first('problem_statement') }}
                                     </p>
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!--/span-->
+                        <div class="col-md-12">
                             <div class="mb-3">
-                                <label class="control-label">Is Completed</label>
-                                <select wire:model='is_completed' class="form-control custom-select">
-                                    <option selected>Is Completed</option>
-                                    <option value="0">No</option>
-                                    <option value="1">Yes</option>
-                                </select>
-                                @if ($errors->has('is_completed'))
+                                <label class="control-label">Summary of Solution</label>
+                                <textarea class="form-control"
+                                    placeholder="Summary of Solution"
+                                    wire:model='summary_of_solution'
+                                    rows="3"></textarea>
+                                @if ($errors->has('summary_of_solution'))
                                     <p class="form-control-feedback text-danger">
-                                        {{ $errors->first('is_completed') }}
+                                        {{ $errors->first('summary_of_solution') }}
+                                    </p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="control-label">Expected Results</label>
+                                <textarea class="form-control"
+                                    placeholder="Expected Results"
+                                    wire:model='expected_results'
+                                    rows="3"></textarea>
+                                @if ($errors->has('expected_results'))
+                                    <p class="form-control-feedback text-danger">
+                                        {{ $errors->first('expected_results') }}
+                                    </p>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="control-label">Organizational Expertise</label>
+                                <textarea class="form-control"
+                                    placeholder="Organizational Expertise"
+                                    wire:model='organizational_expertise'
+                                    rows="3"></textarea>
+                                @if ($errors->has('organizational_expertise'))
+                                    <p class="form-control-feedback text-danger">
+                                        {{ $errors->first('organizational_expertise') }}
                                     </p>
                                 @endif
                             </div>

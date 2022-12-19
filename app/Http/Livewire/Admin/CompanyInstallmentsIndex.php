@@ -182,19 +182,36 @@ class CompanyInstallmentsIndex extends Component
 
         $this->validate($validateData);
 
-        if ($this->modelId) {
-            CompanyInstallment::find($this->modelId)->update($data);
-            $postInstanceId = $this->modelId;
-        } else {
-            $postInstance = CompanyInstallment::create($data);
-            //$postInstanceId = $postInstance->id;
-        }
+        try {
+            if ($this->modelId) {
+                CompanyInstallment::find($this->modelId)->update($data);
+                $postInstanceId = $this->modelId;
+            } else {
+                $postInstance = CompanyInstallment::create($data);
+                //$postInstanceId = $postInstance->id;
+            }
 
-        $this->emit('refreshParent');
-        $this->emit('pg:eventRefresh-default');
-        $this->dispatchBrowserEvent('showSuccessToast');
-        $this->dispatchBrowserEvent('hideModal');
-        $this->cleanVars();
+            $this->emit('refreshParent');
+            $this->emit('pg:eventRefresh-default');
+            $this->dispatchBrowserEvent('showSuccessToast');
+            $this->dispatchBrowserEvent('hideModal');
+            $this->cleanVars();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            //dd($e->errorInfo);
+            if($e->getCode()==23000) {
+                $this->dispatchBrowserEvent('hideDeleteModal');
+                $this->emit('pg:eventRefresh-default');
+                $this->deleteErrorMessage = 'Integrity Constraint Violation! A record with same entry already exists. Please check your entries and try again later.';
+                $this->dispatchBrowserEvent('showErrorToast');
+
+            } else {
+                $this->dispatchBrowserEvent('hideDeleteModal');
+                $this->emit('pg:eventRefresh-default');
+                $this->deleteErrorMessage = 'Something Went Wrong! Please Try Again Later.';
+                $this->dispatchBrowserEvent('showErrorToast');
+            }
+        }
     }
 
     public function forcedCloseModal()

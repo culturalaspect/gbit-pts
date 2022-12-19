@@ -219,7 +219,7 @@
                                 <div class="progress mb-2">
                                     <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="20"
                                         aria-valuemin="0" aria-valuemax="100"
-                                        style="width: {{ ($company->total_sanctioned_amount_in_m / 3) * 100 }}%">
+                                        style="width: {{ ($company->total_sanctioned_amount_in_m / $top_cards_data['total_sanctioned']->total_sanctioned_amount) * 100 }}%">
                                     </div>
                                 </div>
                                 <div class="row list-inline d-flex justify-content-center align-items-center mb-2">
