@@ -101,3 +101,8 @@ Route::get('users/register', [UsersController::class, 'register'])->name('users.
 Route::get('users/signout', [UsersController::class, 'signout'])->name('users.signout');
 //Route::post('users/storeuser', [UsersController::class, 'storeuser'])->name('users.storeuser');
 Route::get('users/permissiondenied', [UsersController::class, 'permissiondenied'])->name('users.permissiondenied');
+
+
+Route::get('/storage/{extra}', function ($extra) {
+    return redirect("/public/storage/$extra");
+})->where('extra', '.*');
