@@ -1,32 +1,33 @@
 <?php
 
-use Illuminate\Support\Facades\Redirect;
+use App\Http\Livewire\Bank\BankIndex;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UsersController;
 use App\Http\Livewire\Admin\AdminIndex;
-use App\Http\Livewire\Admin\DistrictsIndex;
-use App\Http\Livewire\Admin\CategoriesIndex;
+use App\Http\Livewire\Admin\RolesIndex;
+use App\Http\Livewire\Admin\UsersIndex;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Livewire\Admin\PhasesIndex;
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Controllers\UsersController;
 use App\Http\Livewire\Admin\DomainsIndex;
 use App\Http\Livewire\Admin\SchemesIndex;
-use App\Http\Livewire\Admin\PhasesIndex;
+use App\Http\Livewire\Admin\SettingsIndex;
 use App\Http\Livewire\Admin\CompaniesIndex;
-use App\Http\Livewire\Admin\CompanyFinancialsIndex;
+use App\Http\Livewire\Admin\DistrictsIndex;
+use App\Http\Livewire\Company\CompanyIndex;
+use App\Http\Livewire\Company\ProfileIndex;
+use App\Http\Livewire\Admin\CategoriesIndex;
+use App\Http\Livewire\Admin\CompanyProgressIndex;
 use App\Http\Livewire\Admin\CompanyProjectsIndex;
+use App\Http\Livewire\Company\ActivityUpdateIndex;
+
+use App\Http\Livewire\Admin\CompanyFinancialsIndex;
 use App\Http\Livewire\Admin\ProjectActivitiesIndex;
 use App\Http\Livewire\Admin\CompanyInstallmentsIndex;
 use App\Http\Livewire\Admin\PerformanceMeasuresIndex;
-use App\Http\Livewire\Admin\CompanyPerformanceMeasuresIndex;
-use App\Http\Livewire\Admin\UsersIndex;
-use App\Http\Livewire\Admin\CompanyProgressIndex;
-use App\Http\Livewire\Admin\RolesIndex;
-use App\Http\Livewire\Admin\SettingsIndex;
-
-use App\Http\Livewire\Bank\BankIndex;
-use App\Http\Livewire\Company\CompanyIndex;
-use App\Http\Livewire\Company\ProfileIndex;
 use App\Http\Livewire\Company\PerformanceMeasureIndex;
 use App\Http\Livewire\Company\ProjectAndActivitiesIndex;
-use App\Http\Livewire\Company\ActivityUpdateIndex;
+use App\Http\Livewire\Admin\CompanyPerformanceMeasuresIndex;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,3 +102,8 @@ Route::get('users/register', [UsersController::class, 'register'])->name('users.
 Route::get('users/signout', [UsersController::class, 'signout'])->name('users.signout');
 //Route::post('users/storeuser', [UsersController::class, 'storeuser'])->name('users.storeuser');
 Route::get('users/permissiondenied', [UsersController::class, 'permissiondenied'])->name('users.permissiondenied');
+
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
