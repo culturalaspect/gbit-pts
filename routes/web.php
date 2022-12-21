@@ -105,5 +105,6 @@ Route::get('users/permissiondenied', [UsersController::class, 'permissiondenied'
 
 
 Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
+    $command = Artisan::call('storage:link');
+    print_r($command);
 });
