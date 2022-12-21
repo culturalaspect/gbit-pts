@@ -161,7 +161,8 @@ final class ProjectActivityTable extends PowerGridComponent
 
             ->addColumn('activities.deliverable', function (Activity $model) {
                 //return is_null($model->deliverable) ? '' : '<a download class="btn btn-warning btn-outline" href="'. url('storage/deliverables/'.$model->deliverable) .'">Download Deliverable</a>';
-                return is_null($model->deliverable) ? '' : '<a download class="btn btn-warning btn-outline" href="'. Storage::url('deliverables/'.$model->deliverable) .'">Download Deliverable</a>';
+                //return is_null($model->deliverable) ? '' : '<a download class="btn btn-warning btn-outline" href="'. Storage::url('deliverables/'.$model->deliverable) .'">Download Deliverable</a>';
+                return is_null($model->deliverable) ? '' : '<a download class="btn btn-warning btn-outline" href="'. asset('storage/deliverables/'.$model->deliverable) .'">Download Deliverable</a>';
             })
 
             ->addColumn('activities.result', function (Activity $model) {
