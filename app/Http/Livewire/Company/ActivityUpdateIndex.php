@@ -84,7 +84,7 @@ class ActivityUpdateIndex extends Component
             if($this->status == 1) {
                 $validateData = [
                     'status' => 'required|integer',
-                    'deliverable' => 'required|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar',
+                    'deliverable' => 'required|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar,wmv,wav,ppt,pptx',
                     'result' => 'required|min:3'
                 ];
             } else {
@@ -100,7 +100,7 @@ class ActivityUpdateIndex extends Component
                     'start_date' => 'required|date|date_format:Y-m-d',
                     'end_date' => 'required|date|date_format:Y-m-d|after:start_date',
                     'status' => 'required|integer',
-                    'deliverable' => 'required|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar',
+                    'deliverable' => 'required|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar,wmv,wav,ppt,pptx',
                     'result' => 'required|min:3'
                 ];
             } elseif($this->status == 2) {
@@ -113,7 +113,7 @@ class ActivityUpdateIndex extends Component
                     'start_date' => 'required|date|date_format:Y-m-d',
                     'end_date' => 'required|date|date_format:Y-m-d|after:start_date',
                     'status' => 'required|integer',
-                    'deliverable' => 'nullable|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar',
+                    'deliverable' => 'nullable|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar,wmv,wav,ppt,pptx',
                     'result' => 'nullable|min:3'
                 ];
             }
@@ -131,7 +131,7 @@ class ActivityUpdateIndex extends Component
             $actvty->deliverable = $imageHashName;
 
             // Upload the main image
-            $this->deliverable->store('public/deliverables');
+            $this->deliverable->store('deliverables', ['disk' => 'public_uploads']);
         }
 
         $actvty->methodology = $this->methodology;

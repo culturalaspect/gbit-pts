@@ -184,7 +184,7 @@
                                         <div class="mt-2">
                                             <label>Deliverable</label>
                                             <p style="margin-top: 10px;margin-bottom: 10px;margin-left: 20px;">
-                                                <a download class="" href="{{ url('storage/deliverables/'.$activity->deliverable) }}">Download Deliverable</a>
+                                                <a download class="" href="{{ url('uploads/deliverables/'.$activity->deliverable) }}">Download Deliverable</a>
                                             </p>
                                         </div>
                                     @endif

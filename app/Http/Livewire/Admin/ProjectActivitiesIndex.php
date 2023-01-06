@@ -131,7 +131,7 @@ class ProjectActivitiesIndex extends Component
             'start_date' => 'nullable|date|date_format:Y-m-d',
             'end_date' => 'nullable|date|date_format:Y-m-d|after:start_date',
             'status' => 'required|integer',
-            'deliverable' => 'nullable|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar',
+            'deliverable' => 'nullable|mimes:jgp,jpeg,png,bmp,gif,mp4,mp3,mpeg,doc,docx,pdf,xls,xlsx,csv,zip,rar,wmv,wav,ppt,pptx',
             'result' => 'nullable|min:3',
             'is_deadline_set' => 'required|integer',
         ];
@@ -170,7 +170,11 @@ class ProjectActivitiesIndex extends Component
                 ]);
 
                 // Upload the main image
-                $this->deliverable->store('public/deliverables');
+
+                $this->deliverable->store('deliverables', ['disk' => 'public_uploads']);
+
+
+                //$this->deliverable = Storage::disk('public_uploads')->put('uploads/deliverables', $imageHashName);
                 /* Storage::makeDirectory('public/deliverables');
 
                 // Create a thumbnail of the image using Intervention Image Library
