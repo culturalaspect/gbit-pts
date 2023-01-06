@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class UsersIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Users Managment";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Users Managment";
     protected $main_title = "Users Managment";
     protected $breadcrumb_title = "Users Managment";
     protected $selected_main_menu = "admin_users";

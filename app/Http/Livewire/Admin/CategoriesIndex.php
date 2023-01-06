@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class CategoriesIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Categories";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Categories";
     protected $main_title = "Categories";
     protected $breadcrumb_title = "Categories";
     protected $selected_main_menu = "admin_categories";

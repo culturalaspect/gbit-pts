@@ -20,7 +20,7 @@ class ProjectActivitiesIndex extends Component
 
     use WithFileUploads;
 
-    protected $page_title = "Performance Tracking System | G-Link | Project Activities";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Project Activities";
     protected $main_title = "Project Activities";
     protected $breadcrumb_title = "Project Activities";
     protected $selected_main_menu;

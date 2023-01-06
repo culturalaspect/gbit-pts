@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class CompanyInstallmentsIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Company Installments";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Company Installments";
     protected $main_title = "Company Installments";
     protected $breadcrumb_title = "Company Installments";
     protected $selected_main_menu;

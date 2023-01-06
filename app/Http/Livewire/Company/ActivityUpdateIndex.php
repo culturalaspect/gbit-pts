@@ -18,7 +18,7 @@ class ActivityUpdateIndex extends Component
 
     use WithFileUploads;
 
-    protected $page_title = "Performance Tracking System | G-Link | Activities";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Activities";
     protected $main_title = "Activities";
     protected $breadcrumb_title = "Activities";
     protected $selected_main_menu = "admin_project_activities";

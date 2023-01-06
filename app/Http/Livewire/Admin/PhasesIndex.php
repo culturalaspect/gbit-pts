@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class PhasesIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Phases";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Phases";
     protected $main_title = "Phases";
     protected $breadcrumb_title = "Phases";
     protected $selected_main_menu = "admin_phases";

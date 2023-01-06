@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class CompanyFinancialsIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Company Financials";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Company Financials";
     protected $main_title = "Company Financials";
     protected $breadcrumb_title = "Company Financials";
     protected $selected_main_menu;

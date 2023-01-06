@@ -10,7 +10,7 @@ use Hash;
 
 class SettingsIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Settings";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Settings";
     protected $main_title = "Settings";
     protected $breadcrumb_title = "Settings";
     protected $selected_main_menu = "admin_settings";

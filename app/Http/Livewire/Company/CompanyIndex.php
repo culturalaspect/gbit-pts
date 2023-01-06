@@ -8,7 +8,7 @@ use DB;
 
 class CompanyIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Dashboard";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Dashboard";
     protected $main_title = "Dashboard";
     protected $breadcrumb_title = "Dashboard";
     protected $selected_main_menu = "admin_dashboard";

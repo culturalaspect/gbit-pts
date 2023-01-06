@@ -13,7 +13,7 @@ use Hash;
 
 class ProjectAndActivitiesIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Projects and Activities";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Projects and Activities";
     protected $main_title = "Projects and Activities";
     protected $breadcrumb_title = "Projects and Activities";
     protected $selected_main_menu = "admin_project_activities";

@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class RolesIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Roles";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Roles";
     protected $main_title = "Roles";
     protected $breadcrumb_title = "Roles";
     protected $selected_main_menu = "admin_roles";

@@ -11,7 +11,7 @@ use DB;
 
 class CompanyProgressIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Company Progress";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Company Progress";
     protected $main_title = "Company Progress";
     protected $breadcrumb_title = "Company Progress";
     protected $selected_main_menu = "admin_dashboard";

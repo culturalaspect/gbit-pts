@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class DistrictsIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Districts";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Districts";
     protected $main_title = "Districts";
     protected $breadcrumb_title = "Districts";
     protected $selected_main_menu = "admin_districts";

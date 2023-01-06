@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class DomainsIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Domain";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Domain";
     protected $main_title = "Domain";
     protected $breadcrumb_title = "Domain";
     protected $selected_main_menu = "admin_domains";

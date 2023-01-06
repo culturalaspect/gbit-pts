@@ -13,7 +13,7 @@ use Str;
 
 class CompanyProjectsIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Company Projects";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Company Projects";
     protected $main_title = "Company Projects";
     protected $breadcrumb_title = "Company Projects";
     protected $selected_main_menu;

@@ -16,7 +16,7 @@ use Hash;
 
 class PerformanceMeasureIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Performance Track";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Performance Track";
     protected $main_title = "Performance Track";
     protected $breadcrumb_title = "Performance Track";
     protected $selected_main_menu = "admin_index";

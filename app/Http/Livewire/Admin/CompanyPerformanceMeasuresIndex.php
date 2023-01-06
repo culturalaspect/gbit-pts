@@ -12,7 +12,7 @@ use Livewire\Component;
 
 class CompanyPerformanceMeasuresIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Company Performance Measures";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Company Performance Measures";
     protected $main_title = "Company Performance Measures";
     protected $breadcrumb_title = "Company Performance Measures";
     protected $selected_main_menu;

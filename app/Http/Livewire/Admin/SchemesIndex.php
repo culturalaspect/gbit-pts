@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class SchemesIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Schemes";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Schemes";
     protected $main_title = "Schemes";
     protected $breadcrumb_title = "Schemes";
     protected $selected_main_menu = "admin_schemes";

@@ -12,7 +12,7 @@ use Hash;
 
 class ProfileIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Profile";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Profile";
     protected $main_title = "Profile";
     protected $breadcrumb_title = "Profile";
     protected $selected_main_menu = "admin_profile";

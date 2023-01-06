@@ -34,7 +34,7 @@
 
             <div class="card-body">
                 <h4 class="card-title text-center mb-0 mt-0">IT Department GB</h4>
-                <h6 class="text-center mb-0 mt-0">Performance Tracking System</h6>
+                <h6 class="text-center mb-0 mt-0">Performance Monitoring Information System</h6>
                 <h5 class="card-subtitle mt-3 mb-1 pb-3 border-bottom">
                     Sign in to start your session
                 </h5>

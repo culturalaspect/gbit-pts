@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class CompaniesIndex extends Component
 {
-    protected $page_title = "Performance Tracking System | G-Link | Companies";
+    protected $page_title = "Performance Monitoring Information System | G-Link | Companies";
     protected $main_title = "Companies";
     protected $breadcrumb_title = "Companies";
     protected $selected_main_menu = "admin_companies";

@@ -14,7 +14,7 @@ use URL;
 
 class UsersController extends Controller
 {
-    protected $page_title = "Performance Tracking System | Users";
+    protected $page_title = "Performance Monitoring Information System | Users";
 
 	public function index(){
         if(auth()->user()) {
@@ -27,14 +27,14 @@ class UsersController extends Controller
             }
         }
 
-        $this->page_title = "Performance Tracking System | User Login";
+        $this->page_title = "Performance Monitoring Information System | User Login";
 
         return view('users.login')
             ->with('page_title', $this->page_title);
 	}
 
     public function forgetpassword(){
-        $this->page_title = "Performance Tracking System | Forget Password";
+        $this->page_title = "Performance Monitoring Information System | Forget Password";
 
         return view('users.forget')
             ->with('page_title', $this->page_title);
@@ -60,7 +60,7 @@ class UsersController extends Controller
     }
 
     public function resetpassword($email){
-        $this->page_title = "Performance Tracking System | Reset Password";
+        $this->page_title = "Performance Monitoring Information System | Reset Password";
 
         return view('users.resetpassword')
             ->with('email', $email)
@@ -94,7 +94,7 @@ class UsersController extends Controller
     public function register(){
         $districts = District::where('is_specific_quota', 0)->get();
 
-        $this->page_title = "Performance Tracking System | Register User";
+        $this->page_title = "Performance Monitoring Information System | Register User";
 
         return view('users.register')
             ->with('districts', $districts)
@@ -154,7 +154,7 @@ class UsersController extends Controller
 
 
     public function permissiondenied(){
-        $this->page_title = "Performance Tracking System | Permission Denied";
+        $this->page_title = "Performance Monitoring Information System | Permission Denied";
         return view('errors.550')
             ->with('page_title', $this->page_title);
     }
