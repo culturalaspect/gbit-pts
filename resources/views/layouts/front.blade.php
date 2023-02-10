@@ -38,7 +38,7 @@
 		<section class="top">
 			<div class="jumbotron top_header">
 				<div class="container subwrapper">
-					<div class="pull-left">	
+					<div class="pull-left">
 						<p>
 							<span class="item dd-font-size">
 								<span class="glyphicon glyphicon-earphone golden-color"></span> +92-5811-960001/960091
@@ -63,17 +63,17 @@
 							</div>
 						</form>
 						<p class="header_social_icons">
-							<a class="log_btns font-weight-bold" href="{{ url('users/login') }}">Login</a><span class="log_btns2"> | </span> 
+							<a class="log_btns font-weight-bold" href="{{ url('users/login') }}">Login</a><span class="log_btns2"> | </span>
 							<a class="log_btns font-weight-bold" href="{{ url('users/register') }}">Register</a>
 						</p>
 					</div>
 				</div>
 			</div>
 		</section>
-		    
+
 		<!--=========MIDDEL-TOP_BAR============-->
 		<!--Begin Fixed Header-->
-		<section id="bottom_fixed_header" class="bottom">    
+		<section id="bottom_fixed_header" class="bottom">
 		    <div class="middleBar">
 			    <div class="container">
 				  <div class="row display-table">
@@ -82,7 +82,7 @@
 				    </div>
 				    <!-- end col -->
 				    <div class="col-sm-10 vertical-align">
-				    	<h1 class="top-head-h1">Directorate of Education Colleges Gilgit-Baltistan</h1>     
+				    	<h1 class="top-head-h1">Directorate of Education Colleges Gilgit-Baltistan</h1>
 				    </div>
 				    <!-- end col -->
 				    <!-- end col -->
@@ -92,7 +92,7 @@
 			</div>
 		</section>
 		<!--End Fixed Header-->
-		    
+
 
 		<nav class="navbar navbar-main navbar-default custom_default_border" role="navigation" style="opacity: 1;">
 		          <div class="container">
@@ -103,11 +103,11 @@
 		                <span class="icon-bar"></span>
 		                <span class="icon-bar"></span>
 		                <span class="icon-bar"></span>
-		              </button>             
+		              </button>
 		            </div>
-		        
+
 		            <!-- Collect the nav links,  -->
-		            <div class="collapse navbar-collapse navbar-1 custom-nav-bar-2" style="margin-top: 0px;">            
+		            <div class="collapse navbar-collapse navbar-1 custom-nav-bar-2" style="margin-top: 0px;">
 		              <ul class="nav navbar-nav">
 		                <li class="{{$selected_main_menu == 'home_page' ? 'active-button-mid':'' }}"><a href="{{ url('/') }}" class="dropdown-toggle">Home</a></li>
 		                <li class="{{$selected_main_menu == 'institutions_page' ? 'active-button-mid':'' }}"><a href="{{ url('/institutions') }}" class="dropdown-toggle">Institutions</a></li>
@@ -264,7 +264,7 @@
 			<section class="footer_powered">
 				<div class="container">
 					<div class="right_nav_items">
-						<p class="text-center color-000">Powered By <a href="#">Highlander Connection ©</a> Heli Chowk, Near FCNA HQ, Jutial Gilgit</p>
+						<p class="text-center color-000">Powered By <a href="http://www.gbit.gov.pk">Information Techonology Department</a> Gilgit-Baltistan</p>
 					</div>
 				</div>
 			</section>
