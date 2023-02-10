@@ -45,7 +45,7 @@
 
   <!-- Custom Styling -->
   <link rel="stylesheet" href="{{ url('css/customstyle.css') }}">
-  
+
 </head>
 <body class="sidebar-collapse sidebar-mini pace-done">
 <div class="col-8 align-self-center someBlock"></div>
@@ -95,7 +95,7 @@
           </form>
         </div>
       </li>
-      
+
 
       <!-- Messages Dropdown Menu -->
       <!-- <li class="nav-item dropdown">
@@ -239,7 +239,7 @@
             @else
               <a href="{{ url('dataentry/index') }}" class="nav-link">
             @endif
-            
+
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -365,7 +365,7 @@
                   </li>
                 </ul>
               </li>
-              
+
               <li class="nav-item {{ $selected_main_menu == 'fees' ? ' menu-is-opening menu-open':'' }}">
                 <a href="#" class="nav-link {{ $selected_main_menu == 'fees' ? 'active':'' }}">
                   <i class="nav-icon fas fa-file-medical-alt"></i>
@@ -647,7 +647,7 @@
                   </li>
                 </ul>
               </li>
-              
+
           @endif
 
           @if(auth()->user()->user_role == 3)
@@ -741,7 +741,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.1.0
     </div>
-    <strong>Powered by <a href="#">Highlander Connection &copy;</a>.</strong> Heli Chowk, Near FCNA HQ, Jutial Gilgit
+    <strong>Powered by <a href="http://www.gbit.gov.pk">Information Technology Department</a>.</strong> Gilgit-Baltistan
   </footer>
 
   <!-- Control Sidebar -->
