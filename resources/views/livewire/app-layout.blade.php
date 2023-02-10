@@ -275,7 +275,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer"> Powered By <a href="#">The Highlanders Connection © </a>
+            <footer class="footer"> Powered By <a href="#">Information Technology Department</a> Gilgit-Baltistan
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
