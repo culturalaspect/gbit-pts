@@ -275,7 +275,7 @@
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <footer class="footer"> Powered By <a href="#">Information Technology Department</a> Gilgit-Baltistan
+            <footer class="footer"> Powered By <a href="http://www.gbit.gov.pk">Information Technology Department</a> Gilgit-Baltistan
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
