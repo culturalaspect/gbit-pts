@@ -113,11 +113,21 @@ class CompanyIndex extends Component
 
         $cpms = CompanyPerformanceMeasure::where('company_id', auth()->user()->company_id)->with(['phase', 'measure'])->where('is_completed', false)->get();
 
+        $activities = DB::select(DB::raw("
+            SELECT
+            (SELECT count(*) FROM projects WHERE company_id = ".auth()->user()->company_id.") AS total_projects,
+            (SELECT count(*) FROM activities INNER JOIN projects ON projects.id = activities.project_id WHERE projects.company_id = ". auth()->user()->company_id .") AS total_activities,
+            (SELECT count(*) FROM activities INNER JOIN projects ON projects.id = activities.project_id WHERE projects.company_id = ". auth()->user()->company_id ." AND activities.status = 0) AS total_in_progress_activities,
+            (SELECT count(*) FROM activities INNER JOIN projects ON projects.id = activities.project_id WHERE projects.company_id = ". auth()->user()->company_id ." AND status = 1) AS total_in_completed_activities,
+            (SELECT count(*) FROM activities INNER JOIN projects ON projects.id = activities.project_id WHERE projects.company_id = ". auth()->user()->company_id ." AND status = 2) AS total_in_not_applicable_activities
+        "));
+
         return view('livewire.company.company-index')
                 ->with('main_title', $this->main_title)
                 ->with('breadcrumb_title', $this->breadcrumb_title)
                 ->with('card_title', $this->card_title)
                 ->with('companies', $companies)
+                ->with('activities', $activities)
                 ->with('top_cards_data', $top_cards_data)
                 ->with('company_financials', $company_financials)
                 ->with('cpms', $cpms)
