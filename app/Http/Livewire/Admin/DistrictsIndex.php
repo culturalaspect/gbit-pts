@@ -24,6 +24,8 @@ class DistrictsIndex extends Component
 
     public $deleteErrorMessage = 'Deleted Record Successfully';
 
+    public $is_loading = false;
+
 
     protected $listeners = [
         'getModelId',
@@ -67,7 +69,7 @@ class DistrictsIndex extends Component
     public function delete()
     {
         $item = District::find($this->selectedItem);
-
+        $this->is_loading = true;
         if($item){
             try {
                 $item->delete();
@@ -92,6 +94,7 @@ class DistrictsIndex extends Component
                 }
             }
         }
+        $this->is_loading = false;
     }
 
     public function getModelId($modelId)
@@ -106,6 +109,8 @@ class DistrictsIndex extends Component
 
     public function save()
     {
+        $this->is_loading = true;
+
         // Data validation
         $validateData = [
             'district_name' => 'required|min:3',
@@ -133,6 +138,8 @@ class DistrictsIndex extends Component
         $this->dispatchBrowserEvent('showSuccessToast');
         $this->dispatchBrowserEvent('hideModal');
         $this->cleanVars();
+
+        $this->is_loading = false;
     }
 
     public function forcedCloseModal()

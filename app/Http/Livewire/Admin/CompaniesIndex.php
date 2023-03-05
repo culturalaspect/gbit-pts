@@ -37,6 +37,8 @@ class CompaniesIndex extends Component
     public $startup_stage;
     public $current_assets;
 
+    public $is_loading;
+
     public $deleteErrorMessage = 'Deleted Record Successfully';
 
 
@@ -133,6 +135,7 @@ class CompaniesIndex extends Component
 
     public function save()
     {
+        $this->is_loading = true;
         // Data validation
         $validateData = [
             'company_name' => 'required|min:3',
@@ -184,6 +187,8 @@ class CompaniesIndex extends Component
         $this->dispatchBrowserEvent('showSuccessToast');
         $this->dispatchBrowserEvent('hideModal');
         $this->cleanVars();
+
+        $this->is_loading = false;
     }
 
     public function forcedCloseModal()

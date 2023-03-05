@@ -29,6 +29,8 @@ class CompanyFinancialsIndex extends Component
     public $is_sanctioned_by_kcbl;
     public $is_completed_by_kcbl;
 
+    public $is_loading = false;
+
     public $deleteErrorMessage = 'Deleted Record Successfully';
 
 

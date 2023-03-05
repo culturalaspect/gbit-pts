@@ -204,7 +204,11 @@
 
                             </div>
                             <div class="d-block">
-                                <button style="float: right;" type="submit" class="btn btn-success">Save changes</button>
+                                {{-- <button style="float: right;" type="submit" class="btn btn-success">Save changes</button> --}}
+                                <button type="submit" wire:loading.attr="disabled">
+                                    <span wire:loading wire:target="save">Saving...</span>
+                                    <span wire:loading.remove>Save</span>
+                                </button>
                             </div>
                         </form>
                     </div>

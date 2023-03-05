@@ -142,7 +142,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                    <button type="button" wire:click.prevent="save()" class="btn btn-success">Save changes</button>
+                    {{-- <button type="button" wire:click.prevent="save()" class="btn btn-success">Save changes</button> --}}
+                    <button wire:loading.attr="disabled"  class="btn btn-success"
+                        wire:click.prevent="save()">
+                        <span wire:loading wire:target="save">Saving...</span>
+                        <span wire:loading.remove>Save</span>
+                    </button>
                 </div>
             </div>
         </div>

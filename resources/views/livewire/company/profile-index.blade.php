@@ -232,7 +232,12 @@
                                     <div class="col-12">
                                         <div class="d-md-flex align-items-center mt-3">
                                             <div class="ms-auto mt-3 mt-md-0">
-                                                <button wire:click.prevent="save()" type="submit"
+                                                <button wire:loading.attr="disabled"  class="btn btn-success"
+                                                    wire:click.prevent="save()">
+                                                    <span wire:loading wire:target="save">Saving...</span>
+                                                    <span wire:loading.remove>Save</span>
+                                                </button>
+                                                {{-- <button wire:click.prevent="save()" type="submit"
                                                     class="
                                                         btn btn-success
                                                         font-weight-medium
@@ -242,7 +247,7 @@
                                                     <div class="d-flex align-items-center">
                                                         Submit
                                                     </div>
-                                                </button>
+                                                </button> --}}
                                             </div>
                                         </div>
                                     </div>

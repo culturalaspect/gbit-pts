@@ -22,6 +22,8 @@ class CategoriesIndex extends Component
     public $category_name;
     public $description;
 
+    public $is_loading = false;
+
     public $deleteErrorMessage = 'Deleted Record Successfully';
 
     protected $listeners = [
@@ -106,6 +108,9 @@ class CategoriesIndex extends Component
 
     public function save()
     {
+
+        $this->is_loading = true;
+
         // Data validation
         $validateData = [
             'category_name' => 'required|min:3',
@@ -133,6 +138,8 @@ class CategoriesIndex extends Component
         $this->dispatchBrowserEvent('showSuccessToast');
         $this->dispatchBrowserEvent('hideModal');
         $this->cleanVars();
+
+        $this->is_loading = false;
     }
 
     public function forcedCloseModal()

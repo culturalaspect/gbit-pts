@@ -386,20 +386,21 @@
 </div>
 {{-- End of Content Container --}}
 
+
 @push('scripts')
     <script type="text/javascript">
-        var d_names = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode($dw_sep_array['district_names']) }}';
-        var t_companies = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode($dw_sep_array['total_companies']) }}';
-        var t_amount_m = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode($dw_sep_array['total_amount_in_m']) }}';
-        var colors = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode($dw_sep_array['colors']) }}';
+        var d_names = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode(!empty($dw_sep_array['district_names'])) }}';
+        var t_companies = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode(!empty($dw_sep_array['total_companies'])) }}';
+        var t_amount_m = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode(!empty($dw_sep_array['total_amount_in_m'])) }}';
+        var colors = '{{ !isset($dw_sep_array) ? json_encode([]) : json_encode(!empty($dw_sep_array['colors'])) }}';
         var labels = JSON.parse(d_names.replace(/&quot;/g, '"'));
         var data_nos = JSON.parse(t_companies.replace(/&quot;/g, '"'));
         var data_tam = JSON.parse(t_amount_m.replace(/&quot;/g, '"'));
         var backgroundColor = JSON.parse(colors.replace(/&quot;/g, '"'));
 
-        var c_names = '{{ !isset($cw_sep_array) ? json_encode([]) : json_encode($cw_sep_array['category_names']) }}';
-        var t_amount_m2 = '{{ !isset($cw_sep_array) ? json_encode([]) : json_encode($cw_sep_array['total_amount_in_m']) }}';
-        var colors2 = '{{ !isset($cw_sep_array) ? json_encode([]) : json_encode($cw_sep_array['colors']) }}';
+        var c_names = '{{ !isset($cw_sep_array) ? json_encode([]) : json_encode(!empty($cw_sep_array['category_names'])) }}';
+        var t_amount_m2 = '{{ !isset($cw_sep_array) ? json_encode([]) : json_encode(!empty($cw_sep_array['total_amount_in_m'])) }}';
+        var colors2 = '{{ !isset($cw_sep_array) ? json_encode([]) : json_encode(!empty($cw_sep_array['colors'])) }}';
         var labels2 = JSON.parse(c_names.replace(/&quot;/g, '"'));
 
         var backgroundColor2 = JSON.parse(colors2.replace(/&quot;/g, '"'));
