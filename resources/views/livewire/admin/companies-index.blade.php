@@ -94,7 +94,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Company Name</label>
-                                <input type="text" wire:model='company_name'
+                                <input type="text" wire:model.lazy='company_name'
                                     class="form-control"
                                     placeholder="Company Name">
                                 @if ($errors->has('company_name'))
@@ -108,7 +108,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">CEO Name</label>
-                                <input type="text" wire:model='ceo_name'
+                                <input type="text" wire:model.lazy='ceo_name'
                                     class="form-control"
                                     placeholder="CEO Name">
                                 @if ($errors->has('ceo_name'))
@@ -125,7 +125,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Cell Number</label>
-                                <input type="text" wire:model='cell_no'
+                                <input type="text" wire:model.lazy='cell_no'
                                     class="form-control"
                                     placeholder="Cell No">
                                 @if ($errors->has('cell_no'))
@@ -139,7 +139,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Official Email</label>
-                                <input type="text" wire:model='official_email'
+                                <input type="text" wire:model.lazy='official_email'
                                     class="form-control"
                                     placeholder="Official Email">
                                 @if ($errors->has('official_email'))
@@ -155,7 +155,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Address</label>
-                                <input type="text" wire:model='address'
+                                <input type="text" wire:model.lazy='address'
                                     class="form-control"
                                     placeholder="Address">
                                 @if ($errors->has('address'))
@@ -168,7 +168,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Online Profile Link</label>
-                                <input type="text" wire:model='online_profile_link'
+                                <input type="text" wire:model.lazy='online_profile_link'
                                     class="form-control"
                                     placeholder="Online Profile Link">
                                 @if ($errors->has('online_profile_link'))
@@ -181,7 +181,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Current Assets</label>
-                                <textarea type="text" wire:model='current_assets'
+                                <textarea type="text" wire:model.lazy='current_assets'
                                     class="form-control"
                                     placeholder="Current Assets">Current Assets</textarea>
                                 @if ($errors->has('current_assets'))
@@ -194,7 +194,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Business / Startup Stage</label>
-                                <select wire:model='startup_stage' class="form-control custom-select">
+                                <select wire:model.lazy='startup_stage' class="form-control custom-select">
                                     <option>Select Business / Startup Stage</option>
                                     <option value="Ideation Level">Ideation Level</option>
                                     <option value="Early Age Level">Early Age Level</option>
@@ -215,7 +215,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Categories</label>
-                                <select wire:model='category_id' class="form-control custom-select">
+                                <select wire:model.lazy='category_id' class="form-control custom-select">
                                     <option selected>Select Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -232,7 +232,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Districts</label>
-                                <select wire:model='district_id' class="form-control custom-select">
+                                <select wire:model.lazy='district_id' class="form-control custom-select">
                                     <option selected>Select District</option>
                                     @foreach ($districts as $district)
                                         <option value="{{ $district->id }}">{{ $district->district_name }}</option>
@@ -248,7 +248,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Total Employees</label>
-                                <input type="text" wire:model='total_employees'
+                                <input type="text" wire:model.lazy='total_employees'
                                     class="form-control"
                                     placeholder="Total Employees">
                                 @if ($errors->has('total_employees'))
@@ -262,7 +262,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Total Revenue</label>
-                                <input type="number" wire:model='total_revenue'
+                                <input type="number" wire:model.lazy='total_revenue'
                                     class="form-control"
                                     placeholder="Total Revenue">
                                 @if ($errors->has('total_revenue'))
@@ -276,7 +276,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Total Profit</label>
-                                <input type="number" wire:model='total_profit'
+                                <input type="number" wire:model.lazy='total_profit'
                                     class="form-control"
                                     placeholder="Total Profit">
                                 @if ($errors->has('total_profit'))
@@ -289,7 +289,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Is Completed</label>
-                                <select wire:model='is_completed' class="form-control custom-select">
+                                <select wire:model.lazy='is_completed' class="form-control custom-select">
                                     <option selected>Is Completed</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>

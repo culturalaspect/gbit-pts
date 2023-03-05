@@ -91,21 +91,21 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>User Name</label><br />
-                        <input type="text" wire:model="user_name" class="form-control" />
+                        <input type="text" wire:model.lazy="user_name" class="form-control" />
                         @if ($errors->has('user_name'))
                             <p style="color: red;">{{ $errors->first('user_name') }}</p>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Email</label><br />
-                        <input type="text" wire:model="email" class="form-control" />
+                        <input type="text" wire:model.lazy="email" class="form-control" />
                         @if ($errors->has('email'))
                             <p style="color: red;">{{ $errors->first('email') }}</p>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Select Role</label><br />
-                        <select class="form-control" wire:model="role_id">
+                        <select class="form-control" wire:model.lazy="role_id">
                             <option value="">Select Role</option>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->role_name }}</option>
@@ -117,21 +117,21 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label><br />
-                        <input type="password" wire:model="password" class="form-control" />
+                        <input type="password" wire:model.lazy="password" class="form-control" />
                         @if ($errors->has('password'))
                             <p style="color: red;">{{ $errors->first('password') }}</p>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Confirm Password</label><br />
-                        <input type="password" wire:model="confirm_password" class="form-control" />
+                        <input type="password" wire:model.lazy="confirm_password" class="form-control" />
                         @if ($errors->has('confirm_password'))
                             <p style="color: red;">{{ $errors->first('confirm_password') }}</p>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Select Comapny</label><br />
-                        <select class="form-control" wire:model="company_id">
+                        <select class="form-control" wire:model.lazy="company_id">
                             <option value="">Select Comapny</option>
                             @foreach ($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->company_name }}</option>

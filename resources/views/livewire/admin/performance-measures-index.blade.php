@@ -94,7 +94,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Measure Name</label><br />
-                                    <input type="text" wire:model="measure_name" class="form-control" placeholder="Measure Name" />
+                                    <input type="text" wire:model.lazy="measure_name" class="form-control" placeholder="Measure Name" />
                                     @if ($errors->has('measure_name'))
                                         <p style="color: red;">{{ $errors->first('measure_name') }}</p>
                                     @endif
@@ -104,7 +104,7 @@
                                 <div class="form-group">
                                     <div class="mb-3">
                                         <label class="control-label">Is Active</label>
-                                        <select wire:model='is_active' class="form-control custom-select">
+                                        <select wire:model.lazy='is_active' class="form-control custom-select">
                                             <option selected>Is Active</option>
                                             <option value="0">No</option>
                                             <option value="1">Yes</option>
@@ -122,7 +122,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Date From</label><br />
-                                    <input type="text" wire:model="date_from" class="form-control datepicker"
+                                    <input type="text" wire:model.lazy="date_from" class="form-control datepicker"
                                         id="datepicker-autoclose-date_from" placeholder="yyyy-mm-dd"
                                         onchange="Livewire.emit('setDateFrom', this.value)" readonly>
                                     @if ($errors->has('date_from'))
@@ -133,7 +133,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Date To</label><br />
-                                    <input type="text" wire:model="date_to" class="form-control datepicker"
+                                    <input type="text" wire:model.lazy="date_to" class="form-control datepicker"
                                         id="datepicker-autoclose-date_to" placeholder="yyyy-mm-dd"
                                         onchange="Livewire.emit('setDateTo', this.value)" readonly>
                                     @if ($errors->has('date_to'))
@@ -146,7 +146,7 @@
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="form-control" rows="3" wire:model="description" placeholder="Description"></textarea>
+                                    <textarea class="form-control" rows="3" wire:model.lazy="description" placeholder="Description"></textarea>
                                     @if ($errors->has('description'))
                                         <p style="color: red;">{{ $errors->first('description') }}</p>
                                     @endif
@@ -182,7 +182,7 @@
                                     <div class="row mb-2">
                                         <div class="col-lg-4">
                                             <div class="d-flex justify-content-center">
-                                                <input wire:model="questions.{{ $index }}.question.question" type="text" class="form-control" placeholder="Enter Question Text">
+                                                <input wire:model.lazy="questions.{{ $index }}.question.question" type="text" class="form-control" placeholder="Enter Question Text">
                                             </div>
                                             @error('questions.'. $index . '.question.question')
                                                 <p style="color:red;">{{ $message }}</p>
@@ -191,7 +191,7 @@
                                         <div class="col-lg-3">
                                             <div class="d-flex justify-content-center">
                                                 <select class="form-control"
-                                                    wire:model="questions.{{ $index }}.question.question_type"
+                                                    wire:model.lazy="questions.{{ $index }}.question.question_type"
                                                     onchange="Livewire.emit('showOptions', this.value, {{ $index }})"
                                                     >
                                                     <option>Select Type</option>
@@ -207,7 +207,7 @@
                                         <div class="col-lg-3">
                                             <div class="d-flex justify-content-center">
                                                 <select class="form-control"
-                                                    wire:model="questions.{{ $index }}.question.is_required"
+                                                    wire:model.lazy="questions.{{ $index }}.question.is_required"
                                                     >
                                                     <option>Is Required</option>
                                                     <option value="0">No</option>
@@ -233,7 +233,7 @@
                                         <div class="row mb-2">
                                             <div class="col-lg-6">
                                                 <div class="">
-                                                    <input wire:model="questions.{{ $index }}.options.{{ $indx }}.option_text" type="text" class="form-control" placeholder="Enter Option">
+                                                    <input wire:model.lazy="questions.{{ $index }}.options.{{ $indx }}.option_text" type="text" class="form-control" placeholder="Enter Option">
                                                 </div>
                                                 @error('questions.'. $index . '.options.'. $indx .'.option_text')
                                                     <p style="color:red;">{{ $message }}</p>

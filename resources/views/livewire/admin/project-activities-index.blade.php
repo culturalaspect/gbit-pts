@@ -93,7 +93,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Projects</label>
-                                <select wire:model="project_id"
+                                <select wire:model.lazy="project_id"
                                     class="form-control custom-select select2">
                                     <option>Select Project</option>
                                     @foreach ($projects as $project)
@@ -110,7 +110,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Activity Title</label>
-                                <input type="text" wire:model='activity_title'
+                                <input type="text" wire:model.lazy='activity_title'
                                     class="form-control"
                                     placeholder="Activity Title">
                                 @if ($errors->has('activity_title'))
@@ -128,7 +128,7 @@
                             <div class="mb-3">
                                 <label class="control-label">Methodology</label>
                                 <textarea class="form-control" placeholder="Methodology"
-                                    wire:model='methodology'
+                                    wire:model.lazy='methodology'
                                     rows="3"></textarea>
                                 @if ($errors->has('methodology'))
                                     <p class="form-control-feedback text-danger">
@@ -141,7 +141,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Start Date</label><br />
-                                    <input type="text" wire:model="start_date" class="form-control datepicker"
+                                    <input type="text" wire:model.lazy="start_date" class="form-control datepicker"
                                         id="datepicker-autoclose-start_date" placeholder="yyyy-mm-dd"
                                         onchange="Livewire.emit('setStartDate', this.value)" readonly>
                                     @if ($errors->has('start_date'))
@@ -152,7 +152,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>End Date</label><br />
-                                    <input type="text" wire:model="end_date" class="form-control datepicker"
+                                    <input type="text" wire:model.lazy="end_date" class="form-control datepicker"
                                         id="datepicker-autoclose-end_date" placeholder="yyyy-mm-dd"
                                         onchange="Livewire.emit('setEndDate', this.value)" readonly>
                                     @if ($errors->has('end_date'))
@@ -166,7 +166,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="control-label">Status</label>
-                                    <select wire:model='status' class="form-control custom-select">
+                                    <select wire:model.lazy='status' class="form-control custom-select">
                                         <option selected>Status</option>
                                         <option value="0">In Progress</option>
                                         <option value="1">Completed</option>
@@ -182,7 +182,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="control-label">Deliverable</label>
-                                    <input type="file" class="form-control" wire:model="deliverable" />
+                                    <input type="file" class="form-control" wire:model.lazy="deliverable" />
                                     @if ($errors->has('deliverable'))
                                         <p class="form-control-feedback text-danger">
                                             {{ $errors->first('deliverable') }}
@@ -196,7 +196,7 @@
                                 <label class="control-label">Result</label>
                                 <textarea class="form-control"
                                     placeholder="Result"
-                                    wire:model='result'
+                                    wire:model.lazy='result'
                                     rows="3"></textarea>
                                 @if ($errors->has('result'))
                                     <p class="form-control-feedback text-danger">
@@ -208,7 +208,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Is Deadline Set</label>
-                                <select wire:model='is_deadline_set' class="form-control custom-select">
+                                <select wire:model.lazy='is_deadline_set' class="form-control custom-select">
                                     <option selected>Is Deadline Set</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>

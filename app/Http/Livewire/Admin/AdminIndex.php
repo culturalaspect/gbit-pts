@@ -132,6 +132,15 @@ class AdminIndex extends Component
 
         //dd($companies);
 
+        $activities = DB::select(DB::raw("
+            SELECT
+            (SELECT count(*) FROM projects) AS total_projects,
+            (SELECT count(*) FROM activities) AS total_activities,
+            (SELECT count(*) FROM activities WHERE status = 0) AS total_in_progress_activities,
+            (SELECT count(*) FROM activities WHERE status = 1) AS total_in_completed_activities,
+            (SELECT count(*) FROM activities WHERE status = 2) AS total_in_not_applicable_activities
+        "));
+
         return view('livewire.admin.admin-index')
                 ->with('main_title', $this->main_title)
                 ->with('breadcrumb_title', $this->breadcrumb_title)
@@ -139,6 +148,7 @@ class AdminIndex extends Component
                 ->with('dw_sep_array', $this->dw_sep_array)
                 ->with('cw_sep_array', $this->cw_sep_array)
                 ->with('companies', $companies)
+                ->with('activities', $activities)
                 ->with('top_cards_data', $top_cards_data)
                 ->layout('livewire.app-layout',
                 [

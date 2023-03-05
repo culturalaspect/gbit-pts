@@ -93,7 +93,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Companies</label>
-                                <select wire:model="company_id"
+                                <select wire:model.lazy="company_id"
                                     onchange="Livewire.emit('updatedSelectedPhase')"
                                     class="form-control custom-select select2">
                                     <option>Select Company</option>
@@ -111,7 +111,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Phase</label>
-                                <select wire:model="phase_id"
+                                <select wire:model.lazy="phase_id"
                                     onchange="Livewire.emit('setDataForCompany')"
                                     class="form-control custom-select select2">
                                     <option>Select Phase</option>
@@ -133,7 +133,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Installment No</label>
-                                <input type="number" wire:model='installment_no' class="form-control"
+                                <input type="number" wire:model.lazy='installment_no' class="form-control"
                                     placeholder="Installment No">
                                 @if ($errors->has('installment_no'))
                                     <p class="form-control-feedback text-danger">
@@ -146,7 +146,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Total Amount Paid</label>
-                                <input type="number" wire:model='amount_paid' class="form-control"
+                                <input type="number" wire:model.lazy='amount_paid' class="form-control"
                                     placeholder="Total Amount Paid">
                                 @if ($errors->has('amount_paid'))
                                     <p class="form-control-feedback text-danger">
@@ -161,7 +161,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Payment Date</label>
-                                <input type="text" wire:model="date_of_payment" class="form-control datepicker"
+                                <input type="text" wire:model.lazy="date_of_payment" class="form-control datepicker"
                                     id="datepicker-autoclose-date_of_payment" placeholder="yyyy-mm-dd"
                                     onchange="Livewire.emit('setDate', this.value)" readonly>
                                 @if ($errors->has('date_of_payment'))

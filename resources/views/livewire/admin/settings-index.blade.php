@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input wire:model='old_password' type="password"
+                                        <input wire:model.lazy='old_password' type="password"
                                             class="form-control {{ $errors->has('old_password') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Old Password">
                                         <label for="tb-old-pwd">Old Password</label>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input wire:model='password' type="password"
+                                        <input wire:model.lazy='password' type="password"
                                             class="form-control {{ $errors->has('password') ? 'border-danger' : '' }}"
                                             id="tb-pwd" placeholder="New Password">
                                         <label for="tb-pwd">New Password</label>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-floating">
-                                        <input wire:model='confirm_password' type="password"
+                                        <input wire:model.lazy='confirm_password' type="password"
                                             class="form-control {{ $errors->has('confirm_password') ? 'border-danger' : '' }}"
                                             id="tb-cpwd" placeholder="Password">
                                         <label for="tb-cpwd">Confirm Password</label>

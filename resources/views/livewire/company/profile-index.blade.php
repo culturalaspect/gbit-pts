@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='ceo_name' type="text"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='ceo_name' type="text"
                                             class="form-control {{ $errors->has('ceo_name') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="CEO Name">
                                         <label for="tb-old-pwd">CEO Name</label>
@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='address' type="text"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='address' type="text"
                                             class="form-control {{ $errors->has('address') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Address">
                                         <label for="tb-old-pwd">Address</label>
@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='cell_no' type="text"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='cell_no' type="text"
                                             class="form-control {{ $errors->has('cell_no') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Cell No">
                                         <label for="tb-old-pwd">Cell No</label>
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='official_email' type="email"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='official_email' type="email"
                                             class="form-control {{ $errors->has('official_email') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Official Email">
                                         <label for="tb-old-pwd">Official Email</label>
@@ -124,7 +124,7 @@
                                     <div class="form-floating">
                                         <select {{ $is_completed == 1 ? 'disabled' : '' }}
                                             class="form-control {{ $errors->has('startup_stage') ? 'border-danger' : '' }}"
-                                            wire:model='startup_stage'
+                                            wire:model.lazy='startup_stage'
                                             id="tb-old-pwd">
                                             <option value="">Select Business / Startup Stage</option>
                                             <option value="Ideation Level">Ideation Level</option>
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='current_assets' type="text"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='current_assets' type="text"
                                             class="form-control {{ $errors->has('current_assets') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Current Assets">
                                         <label for="tb-old-pwd">Current Assets</label>
@@ -154,7 +154,7 @@
                                     <div class="form-floating">
                                         <select {{ $is_completed == 1 ? 'disabled' : '' }}
                                             class="form-control {{ $errors->has('category_id') ? 'border-danger' : '' }}"
-                                            wire:model='category_id'
+                                            wire:model.lazy='category_id'
                                             id="tb-old-pwd">
                                             <option>Select Category</option>
                                             @foreach($categories as $category)
@@ -171,7 +171,7 @@
                                     <div class="form-floating">
                                         <select {{ $is_completed == 1 ? 'disabled' : '' }}
                                             class="form-control {{ $errors->has('district_id') ? 'border-danger' : '' }}"
-                                            wire:model='district_id'
+                                            wire:model.lazy='district_id'
                                             id="tb-old-pwd">
                                             <option>Select District</option>
                                             @foreach($districts as $district)
@@ -186,7 +186,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='online_profile_link' type="text"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='online_profile_link' type="text"
                                             class="form-control {{ $errors->has('online_profile_link') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Online Profile Link">
                                         <label for="tb-old-pwd">Online Profile Link</label>
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='total_employees' type="number"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='total_employees' type="number"
                                             class="form-control {{ $errors->has('total_employees') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Total Employees">
                                         <label for="tb-old-pwd">Total Employees</label>
@@ -208,7 +208,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='total_revenue' type="number"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='total_revenue' type="number"
                                             class="form-control {{ $errors->has('total_revenue') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Total Revenue">
                                         <label for="tb-old-pwd">Total Revenue</label>
@@ -219,7 +219,7 @@
                                 </div>
                                 <div class="col-md-12 mb-3">
                                     <div class="form-floating">
-                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model='total_profit' type="number"
+                                        <input {{ $is_completed == 1 ? 'disabled' : '' }} wire:model.lazy='total_profit' type="number"
                                             class="form-control {{ $errors->has('total_profit') ? 'border-danger' : '' }}"
                                             id="tb-old-pwd" placeholder="Total Profit">
                                         <label for="tb-old-pwd">Total Profit</label>

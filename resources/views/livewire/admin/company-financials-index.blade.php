@@ -94,7 +94,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Companies</label>
-                                <select wire:model="company_id"
+                                <select wire:model.lazy="company_id"
                                     class="form-control custom-select select2">
                                     <option>Select Company</option>
                                     @foreach ($companies as $company)
@@ -111,7 +111,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Phases</label>
-                                <select wire:model="phase_id"
+                                <select wire:model.lazy="phase_id"
                                     class="form-control custom-select select2">
                                     <option>Select Phase</option>
                                     @foreach ($phases as $phase)
@@ -132,7 +132,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Sanctioned Loan Amount</label>
-                                <input type="number" wire:model='total_sanctioned_amount'
+                                <input type="number" wire:model.lazy='total_sanctioned_amount'
                                     wire:change='calculateLoanAmount'
                                     wire:click='calculateLoanAmount'
                                     class="form-control"
@@ -148,7 +148,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Total No of Installments</label>
-                                <input type="number" wire:model='total_installments'
+                                <input type="number" wire:model.lazy='total_installments'
                                     class="form-control"
                                     wire:change='calculateLoanAmount'
                                     wire:click='calculateLoanAmount'
@@ -166,7 +166,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Total Markup (Percentage)</label>
-                                <input type="number" wire:model='installment_markup_percentage'
+                                <input type="number" wire:model.lazy='installment_markup_percentage'
                                     class="form-control"
                                     wire:change='calculateLoanAmount'
                                     wire:click='calculateLoanAmount'
@@ -181,7 +181,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Monthly Installment Amount</label>
-                                <input type="number" wire:model='installment_amount'
+                                <input type="number" wire:model.lazy='installment_amount'
                                     class="form-control"
                                     placeholder="Monthly Installment Amount">
                                 @if ($errors->has('installment_amount'))
@@ -197,7 +197,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Is Loan Disbursed (KCBL)</label>
-                                <select wire:model='is_sanctioned_by_kcbl' class="form-control custom-select">
+                                <select wire:model.lazy='is_sanctioned_by_kcbl' class="form-control custom-select">
                                     <option selected>Is Loan Disbursed (KCBL)</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>
@@ -212,7 +212,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">All Formalities Completed (KCBL)</label>
-                                <select wire:model='is_completed_by_kcbl' class="form-control custom-select">
+                                <select wire:model.lazy='is_completed_by_kcbl' class="form-control custom-select">
                                     <option selected>All Formalities Completed (KCBL)</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>

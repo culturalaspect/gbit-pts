@@ -193,7 +193,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Companies</label>
-                                <select wire:model="company_id" onchange="Livewire.emit('updatedSelectedPhase')"
+                                <select wire:model.lazy="company_id" onchange="Livewire.emit('updatedSelectedPhase')"
                                     class="form-control custom-select select2">
                                     <option>Select Company</option>
                                     @foreach ($companies as $company)
@@ -210,7 +210,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Phase</label>
-                                <select wire:model="phase_id" class="form-control custom-select select2">
+                                <select wire:model.lazy="phase_id" class="form-control custom-select select2">
                                     <option>Select Phase</option>
                                     @if ($phases)
                                         @foreach ($phases as $phase)
@@ -231,7 +231,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Performance Measure</label>
-                                <select wire:model='measure_id' class="form-control custom-select">
+                                <select wire:model.lazy='measure_id' class="form-control custom-select">
                                     <option value="" selected>Select a Performance Measure</option>
                                     @foreach ($measures as $measure)
                                         <option value="{{ $measure->id }}">{{ $measure->measure_name }}</option>
@@ -252,7 +252,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="control-label">Total Employees</label>
-                                <input type="number" wire:model='total_employees' class="form-control"
+                                <input type="number" wire:model.lazy='total_employees' class="form-control"
                                     placeholder="Total Employees">
                                 @if ($errors->has('total_employees'))
                                     <p class="form-control-feedback text-danger">
@@ -265,7 +265,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="control-label">Total Revenue</label>
-                                <input type="number" wire:model='total_revenue' class="form-control"
+                                <input type="number" wire:model.lazy='total_revenue' class="form-control"
                                     placeholder="Total Revenue">
                                 @if ($errors->has('total_revenue'))
                                     <p class="form-control-feedback text-danger">
@@ -278,7 +278,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="control-label">Total Profit</label>
-                                <input type="number" wire:model='total_profit' class="form-control"
+                                <input type="number" wire:model.lazy='total_profit' class="form-control"
                                     placeholder="Total Profit">
                                 @if ($errors->has('total_profit'))
                                     <p class="form-control-feedback text-danger">
@@ -293,7 +293,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Total Loan Amount Utilized</label>
-                                <input type="number" wire:model='total_amount_utilized' class="form-control"
+                                <input type="number" wire:model.lazy='total_amount_utilized' class="form-control"
                                     placeholder="Total Loan Amount Utilized">
                                 @if ($errors->has('total_amount_utilized'))
                                     <p class="form-control-feedback text-danger">
@@ -305,7 +305,7 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="control-label">Is Completed</label>
-                                <select wire:model='is_completed' class="form-control custom-select">
+                                <select wire:model.lazy='is_completed' class="form-control custom-select">
                                     <option selected>Is Completed</option>
                                     <option value="0">No</option>
                                     <option value="1">Yes</option>

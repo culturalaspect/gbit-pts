@@ -91,14 +91,14 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Category Name</label><br />
-                        <input type="text" wire:model="category_name" class="form-control"  placeholder="Category Name"/>
+                        <input type="text" wire:model.lazy="category_name" class="form-control"  placeholder="Category Name"/>
                         @if ($errors->has('category_name'))
                             <p style="color: red;">{{ $errors->first('category_name') }}</p>
                         @endif
                     </div>
                     <div class="form-grou">
                         <label>Description</label>
-                        <textarea class="form-control" rows="3" wire:model="description" placeholder="Description"></textarea>
+                        <textarea class="form-control" rows="3" wire:model.lazy="description" placeholder="Description"></textarea>
                         @if ($errors->has('description'))
                             <p style="color: red;">{{ $errors->first('description') }}</p>
                         @endif

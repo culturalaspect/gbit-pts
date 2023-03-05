@@ -91,14 +91,14 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Phase Name</label><br />
-                        <input type="text" wire:model="phase_name" class="form-control" />
+                        <input type="text" wire:model.lazy="phase_name" class="form-control" />
                         @if ($errors->has('phase_name'))
                             <p style="color: red;">{{ $errors->first('phase_name') }}</p>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Scheme Name</label><br />
-                        <select class="form-select" wire:model="scheme_id">
+                        <select class="form-select" wire:model.lazy="scheme_id">
                             <option selected>Select Scheme</option>
                             @foreach ($schemes as $scheme)
                                 <option value="{{ $scheme->id }}">{{ $scheme->scheme_name }}</option>
@@ -110,7 +110,7 @@
                     </div>
                     <div class="form-group">
                         <label>Date From</label><br />
-                        <input type="text" wire:model="date_from" class="form-control datepicker" id="datepicker-autoclose-date_from" placeholder="yyyy-mm-dd"
+                        <input type="text" wire:model.lazy="date_from" class="form-control datepicker" id="datepicker-autoclose-date_from" placeholder="yyyy-mm-dd"
                             onchange="Livewire.emit('setDateFrom', this.value)" readonly>
                         @if ($errors->has('date_from'))
                             <p style="color: red;">{{ $errors->first('date_from') }}</p>
@@ -118,7 +118,7 @@
                     </div>
                     <div class="form-group">
                         <label>Date To</label><br />
-                        <input type="text" wire:model="date_to" class="form-control datepicker" id="datepicker-autoclose-date_to" placeholder="yyyy-mm-dd"
+                        <input type="text" wire:model.lazy="date_to" class="form-control datepicker" id="datepicker-autoclose-date_to" placeholder="yyyy-mm-dd"
                             onchange="Livewire.emit('setDateTo', this.value)" readonly>
                         @if ($errors->has('date_to'))
                             <p style="color: red;">{{ $errors->first('date_to') }}</p>
@@ -127,7 +127,7 @@
                     <div class="form-group">
                         <div class="mb-3">
                             <label class="control-label">Is Active</label>
-                            <select wire:model='is_active' class="form-control custom-select">
+                            <select wire:model.lazy='is_active' class="form-control custom-select">
                                 <option selected>Is Active</option>
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>

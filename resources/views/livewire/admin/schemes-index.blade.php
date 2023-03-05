@@ -91,21 +91,21 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Scheme Name</label><br />
-                        <input type="text" wire:model="scheme_name" class="form-control"  placeholder="Scheme Name"/>
+                        <input type="text" wire:model.lazy="scheme_name" class="form-control"  placeholder="Scheme Name"/>
                         @if ($errors->has('scheme_name'))
                             <p style="color: red;">{{ $errors->first('scheme_name') }}</p>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Sanctioned Amount</label><br />
-                        <input type="number" wire:model="sanctioned_amount" class="form-control"  placeholder="Sacntioned Amount"/>
+                        <input type="number" wire:model.lazy="sanctioned_amount" class="form-control"  placeholder="Sacntioned Amount"/>
                         @if ($errors->has('sanctioned_amount'))
                             <p style="color: red;">{{ $errors->first('sanctioned_amount') }}</p>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Date of Sanction</label><br />
-                        <input type="text" wire:model="date_of_sanction" class="form-control datepicker" id="datepicker-autoclose" placeholder="yyyy-mm-dd"
+                        <input type="text" wire:model.lazy="date_of_sanction" class="form-control datepicker" id="datepicker-autoclose" placeholder="yyyy-mm-dd"
                             onchange="Livewire.emit('setDate', this.value)" readonly>
                         @if ($errors->has('date_of_sanction'))
                             <p style="color: red;">{{ $errors->first('date_of_sanction') }}</p>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="form-grou">
                         <label>Description</label>
-                        <textarea class="form-control" rows="3" wire:model="description" placeholder="Description"></textarea>
+                        <textarea class="form-control" rows="3" wire:model.lazy="description" placeholder="Description"></textarea>
                         @if ($errors->has('description'))
                             <p style="color: red;">{{ $errors->first('description') }}</p>
                         @endif

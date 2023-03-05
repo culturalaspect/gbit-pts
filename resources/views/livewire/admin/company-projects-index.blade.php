@@ -94,7 +94,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="control-label">Companies</label>
-                                <select wire:model="company_id"
+                                <select wire:model.lazy="company_id"
                                     class="form-control custom-select select2">
                                     <option>Select Company</option>
                                     @foreach ($companies as $company)
@@ -111,7 +111,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="control-label">Domains</label>
-                                <select wire:model="domain_id"
+                                <select wire:model.lazy="domain_id"
                                     onchange="Livewire.emit('changeOtherDomain')"
                                     class="form-control custom-select select2">
                                     <option>Select Domain</option>
@@ -129,7 +129,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label class="control-label">Domain (if other)</label>
-                                <input {{ $is_disabled_other ? 'disabled' : '' }} type="text" wire:model='other_domain'
+                                <input {{ $is_disabled_other ? 'disabled' : '' }} type="text" wire:model.lazy='other_domain'
                                     class="form-control"
                                     placeholder="Domain (if other)">
                                 @if ($errors->has('other_domain'))
@@ -146,7 +146,7 @@
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label class="control-label">Project Title</label>
-                                <input type="text" wire:model='project_title'
+                                <input type="text" wire:model.lazy='project_title'
                                     class="form-control"
                                     placeholder="Project Title">
                                 @if ($errors->has('project_title'))
@@ -160,7 +160,7 @@
                             <div class="mb-3">
                                 <label class="control-label">Problem Statement</label>
                                 <textarea class="form-control" placeholder="Problem Statement"
-                                    wire:model='problem_statement'
+                                    wire:model.lazy='problem_statement'
                                     rows="3"></textarea>
                                 @if ($errors->has('problem_statement'))
                                     <p class="form-control-feedback text-danger">
@@ -175,7 +175,7 @@
                                 <label class="control-label">Summary of Solution</label>
                                 <textarea class="form-control"
                                     placeholder="Summary of Solution"
-                                    wire:model='summary_of_solution'
+                                    wire:model.lazy='summary_of_solution'
                                     rows="3"></textarea>
                                 @if ($errors->has('summary_of_solution'))
                                     <p class="form-control-feedback text-danger">
@@ -189,7 +189,7 @@
                                 <label class="control-label">Expected Results</label>
                                 <textarea class="form-control"
                                     placeholder="Expected Results"
-                                    wire:model='expected_results'
+                                    wire:model.lazy='expected_results'
                                     rows="3"></textarea>
                                 @if ($errors->has('expected_results'))
                                     <p class="form-control-feedback text-danger">
@@ -203,7 +203,7 @@
                                 <label class="control-label">Organizational Expertise</label>
                                 <textarea class="form-control"
                                     placeholder="Organizational Expertise"
-                                    wire:model='organizational_expertise'
+                                    wire:model.lazy='organizational_expertise'
                                     rows="3"></textarea>
                                 @if ($errors->has('organizational_expertise'))
                                     <p class="form-control-feedback text-danger">
